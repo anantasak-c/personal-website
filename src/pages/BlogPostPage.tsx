@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { posts } from "@/blog/posts-registry";
 import { useSEO } from "@/hooks/useSEO";
