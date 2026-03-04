@@ -1,0 +1,5 @@
+# robots.txt for Anantasak Charoensuk personal website
+User-agent: *
+Allow: /
+
+Sitemap: https://anantasak.dev/sitemap.xml
