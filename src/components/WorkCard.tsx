@@ -82,7 +82,7 @@ export function WorkCard({
       </button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="w-[calc(100vw-2rem)] sm:max-w-xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="max-h-[85vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{company}</DialogTitle>
             <DialogDescription className="text-sm text-gray-500">
