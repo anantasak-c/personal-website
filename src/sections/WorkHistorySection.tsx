@@ -41,10 +41,10 @@ export function WorkHistorySection() {
         </motion.div>
 
         {/* Work Cards */}
-        <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {visibleWork.map((work) => (
-            <div key={work.company}>
-              <WorkCard {...work} />
+            <div key={work.company} className="h-full">
+              <WorkCard {...work} className="h-full" />
             </div>
           ))}
         </div>

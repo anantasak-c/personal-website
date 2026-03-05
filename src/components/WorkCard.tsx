@@ -65,6 +65,7 @@ export function WorkCard({
         onClick={() => setOpen(true)}
         className={cn(
           "group bg-gray-50/80 backdrop-blur-sm rounded-2xl p-5 w-full text-left",
+          "flex flex-col",
           "transition-all duration-300 ease-out gradient-border",
           "hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-100/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400",
           className
@@ -98,7 +99,7 @@ export function WorkCard({
         </div>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 line-clamp-3">{description}</p>
+        <p className="text-sm text-gray-600 line-clamp-3 mt-auto">{description}</p>
       </button>
 
       <Dialog open={open} onOpenChange={setOpen}>
