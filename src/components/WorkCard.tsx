@@ -8,7 +8,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useLang } from "@/i18n/LanguageContext";
 
 interface WorkCardProps {
   company: string;
@@ -31,7 +30,6 @@ export function WorkCard({
   logoColor,
   className,
 }: WorkCardProps) {
-  const { t } = useLang();
   const [open, setOpen] = useState(false);
   const descriptionBlocks = description
     .split(/\n\s*\n/)
@@ -114,7 +112,7 @@ export function WorkCard({
           <div className="space-y-3 text-sm text-gray-600">
             <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-gray-400">
               <StatusBadge status={status} />
-              <span>{status === "present" ? t("work.currently") : t("work.previously")}</span>
+              <span>{status === "present" ? "🟢" : "⚪"}</span>
             </div>
             <div className="space-y-3 leading-relaxed text-gray-700">
               {descriptionBlocks.map((block, idx) => (
