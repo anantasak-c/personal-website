@@ -22,7 +22,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "about.lifeGoal": "เป้าหมายชีวิต",
     "about.education": "การศึกษา",
     "about.highlight": "ไฮไลท์",
-    "about.profileSummary": "ผมเป็น Project Manager, Tech Entrepreneur, Public Speaker",
+    "about.highlightText": "เปลี่ยนสายจากรัฐศาสตร์มาสู่ Tech & Data Science ผ่าน Passionate Learner",
+    "about.lifeGoalQuote": "Turning knowledge into action. เปลี่ยนความรู้ใหม่ๆ ให้เป็นการลงมือทำจริง พร้อมเปิดรับความท้าทายเพื่อขยายขอบเขตความสามารถของตนเองในทุกวัน",
+    "about.profileSummary": "ผมเป็น Project Coordinator, Tech Entrepreneur, Public Speaker",
     // Work History
     "work.label": "ประสบการณ์",
     "work.title": "ประวัติการทำงาน",
@@ -83,7 +85,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "about.lifeGoal": "Life Goal",
     "about.education": "Education",
     "about.highlight": "Highlight",
-    "about.profileSummary": "I'm Project Manager, Tech Entrepreneur, Public Speaker",
+    "about.highlightText": "Transitioned from Political Science to Tech & Data Science through self-driven learning",
+    "about.lifeGoalQuote": "Turning knowledge into action. Transforming new knowledge into real-world execution, embracing challenges to expand capabilities every day.",
+    "about.profileSummary": "I'm Project Coordinator, Tech Entrepreneur, Public Speaker",
     // Work History
     "work.label": "EXPERIENCE",
     "work.title": "Work History",

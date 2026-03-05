@@ -2,7 +2,7 @@
 export const personalInfo = {
   name: "Anantasak Charoensuk",
   nickname: "Anantasak",
-  title: "Project Management & Tech Entrepreneur",
+  title: "Project Coordinator & Tech Entrepreneur",
   subtitle: "Personal website of Anantasak Charoensuk",
   tagline: "My Journey, Sharing Knowledge Along the Way",
   passion: "A lifelong learner navigating the intersection of finance, technology, and building impactful products.",
@@ -46,11 +46,11 @@ export const skills = [
 export const workHistory = [
   {
     company: "NOVARISE ASIA",
-    role: "Project Management & Business Development",
+    role: "Project Coordinator & Business Development",
     duration: "2025 - Present",
     status: "present",
     description: `NOVARISE ASIA
-Project Management & Business Development · 2025 - Present
+Project Coordinator & Business Development · 2025 - Present
 
 present
 Currently

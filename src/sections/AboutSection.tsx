@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { personalInfo, lifeGoal, education } from "@/data/content";
+import { personalInfo, education } from "@/data/content";
 import { MapPin, Target, GraduationCap } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
 
@@ -39,7 +39,7 @@ export function AboutSection() {
             <div className="bg-white rounded-xl p-4 border border-gray-100">
               <p className="text-sm text-gray-600 leading-relaxed">
                 <span className="font-medium text-gray-900">{t("about.highlight")}:</span>{" "}
-                {education.highlight}
+                {t("about.highlightText")}
               </p>
             </div>
           </motion.div>
@@ -109,7 +109,7 @@ export function AboutSection() {
               {/* Quote */}
               <div className="flex items-start gap-3">
                 <p className="text-gray-700 leading-relaxed flex-1 text-sm">
-                  {lifeGoal.quote}
+                  {t("about.lifeGoalQuote")}
                 </p>
                 <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
                   <Target className="w-6 h-6 text-red-500" />
