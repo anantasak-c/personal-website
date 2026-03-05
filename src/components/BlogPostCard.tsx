@@ -11,7 +11,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
   const { t } = useLang();
 
   return (
-    <article className="bg-white border border-gray-100 rounded-2xl p-5 h-full flex flex-col hover:border-gray-200 hover:shadow-md transition-all duration-300">
+    <article className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-5 h-full flex flex-col gradient-border hover:shadow-lg hover:shadow-indigo-100/30 transition-all duration-300">
       <div className="flex-1">
         <p className="text-xs font-medium uppercase tracking-wide text-gray-400 mb-2">{t("blog.new")}</p>
         <h3 className="text-lg font-semibold text-gray-900 leading-snug mb-2 line-clamp-2">{post.title}</h3>

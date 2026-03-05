@@ -113,6 +113,141 @@
       transform: translateY(0);
     }
   }
+
+  /* ── Shimmer Text ── */
+  .shimmer-text {
+    background: linear-gradient(
+      90deg,
+      #1f2937 0%,
+      #1f2937 40%,
+      #6366f1 50%,
+      #1f2937 60%,
+      #1f2937 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerSweep 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmerSweep {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+
+  /* ── Floating animation for SVG decorations ── */
+  .animate-float {
+    animation: floatY 6s ease-in-out infinite;
+  }
+  .animate-float-slow {
+    animation: floatY 8s ease-in-out infinite;
+  }
+  .animate-float-delay {
+    animation: floatY 7s ease-in-out infinite 2s;
+  }
+
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* ── Soft pulse for decorative elements ── */
+  .animate-pulse-soft {
+    animation: pulseSoft 4s ease-in-out infinite;
+  }
+
+  @keyframes pulseSoft {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
+
+  /* ── Slow spin for decorative elements ── */
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  /* ── Glow effect on hover ── */
+  .glow-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .glow-hover:hover {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15), 0 0 40px rgba(99, 102, 241, 0.05);
+    transform: translateY(-2px);
+  }
+
+  /* ── Glassmorphism card ── */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* ── Gradient border glow ── */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(168,85,247,0.3), rgba(236,72,153,0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+
+  /* ── Infinite Marquee (Skills only) ── */
+  .marquee-container {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 30s linear infinite;
+  }
+
+  .marquee-track:hover,
+  .marquee-track:active {
+    animation-play-state: paused;
+  }
+
+  @keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Hide scrollbar for marquee */
+  .marquee-container::-webkit-scrollbar {
+    display: none;
+  }
+  .marquee-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* ── Subtle text glow ── */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+
+  /* ── Avatar ring glow ── */
+  .avatar-glow {
+    box-shadow: 0 0 0 4px white, 0 0 25px rgba(99, 102, 241, 0.25), 0 0 50px rgba(168, 85, 247, 0.1);
+  }
 }
 
 /* Reduced motion support */

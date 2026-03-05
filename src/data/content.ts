@@ -195,19 +195,19 @@ export const blogPosts: BlogPostMeta[] = [
 // Tech Stack
 export const techStack = {
   languages: [
-    { name: "SQL", description: "Main\nDatabase queries and management", icon: "🗃️", main: true },
-    { name: "JavaScript", description: "Web development and scripting", icon: "�" },
+    { name: "SQL", description: "Main\nDatabase queries and management", icon: "🗄️", main: true },
+    { name: "JavaScript", description: "Web development and scripting", icon: "📜" },
     { name: "Python", description: "Main language for data analysis and automation", icon: "🐍", main: true },
-    { name: "R", description: "Statistical analysis", icon: "�" },
+    { name: "R", description: "Statistical analysis", icon: "📊" },
   ],
   business: [
     { name: "n8n", description: "Workflow automation platform", icon: "⚡" },
     { name: "Cursor, Windsurf", description: "A coding program built with AI as its core.", icon: "🤖" },
-    { name: "Looker", description: "Data visualization", icon: "�" },
-    { name: "Google Sheets", description: "Spreadsheet automation", icon: "�" },
+    { name: "Looker", description: "Data visualization", icon: "📈" },
+    { name: "Google Sheets", description: "Spreadsheet automation", icon: "📑" },
   ],
   analytics: [
-    { name: "Tableau", description: "Business intelligence and analytics", icon: "�" },
+    { name: "Tableau", description: "Business intelligence and analytics", icon: "📊" },
     { name: "Google Analytics", description: "Web analytics", icon: "🌐" },
     { name: "Pandas", description: "Data manipulation library", icon: "🐼" },
   ],

@@ -14,8 +14,8 @@ export function TechItem({ name, description, icon, main, className }: TechItemP
     <div
       className={cn(
         "group flex items-start gap-3 p-3 rounded-xl",
-        "transition-all duration-200 ease-out",
-        "hover:bg-gray-100",
+        "transition-all duration-300 ease-out",
+        "hover:bg-gradient-to-r hover:from-indigo-50/50 hover:to-purple-50/50 hover:shadow-sm",
         className
       )}
     >

@@ -30,8 +30,22 @@ export function FooterSection() {
   };
 
   return (
-    <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
-      <div className="max-w-4xl mx-auto">
+    <footer className="relative py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-100 overflow-hidden">
+      {/* Decorative SVG */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <svg className="absolute bottom-0 left-0 w-full h-1" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="footerLine" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="transparent" />
+              <stop offset="50%" stopColor="#818cf8" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="transparent" />
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="1" fill="url(#footerLine)" />
+        </svg>
+      </div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Left - Profile & Email */}
           <motion.div
@@ -104,7 +118,7 @@ export function FooterSection() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                    className="text-sm text-gray-600 hover:text-indigo-600 transition-colors duration-300"
                   >
                     {link.label}
                   </a>
@@ -128,7 +142,7 @@ export function FooterSection() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-2"
+                    className="text-sm text-gray-600 hover:text-indigo-600 transition-colors duration-300 flex items-center gap-2"
                   >
                     <link.icon className="w-4 h-4" />
                     {link.label}

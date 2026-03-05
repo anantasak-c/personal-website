@@ -7,32 +7,76 @@ export function HeroSection() {
   const { t } = useLang();
 
   return (
-    <section className="pt-12 pb-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto text-center">
+    <section className="relative pt-16 pb-10 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* ── Animated SVG Background Decorations ── */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Gradient orb top-left */}
+        <svg className="absolute -top-20 -left-20 w-72 h-72 animate-float opacity-30" viewBox="0 0 200 200">
+          <defs>
+            <radialGradient id="orb1" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#818cf8" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="100" fill="url(#orb1)" />
+        </svg>
+
+        {/* Gradient orb top-right */}
+        <svg className="absolute -top-10 -right-16 w-60 h-60 animate-float-delay opacity-25" viewBox="0 0 200 200">
+          <defs>
+            <radialGradient id="orb2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#a78bfa" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="100" fill="url(#orb2)" />
+        </svg>
+
+        {/* Small decorative circle bottom */}
+        <svg className="absolute bottom-4 left-1/4 w-24 h-24 animate-pulse-soft" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#c7d2fe" strokeWidth="1" />
+          <circle cx="50" cy="50" r="20" fill="none" stroke="#e0e7ff" strokeWidth="0.5" />
+        </svg>
+
+        {/* Rotating ring right */}
+        <svg className="absolute bottom-10 right-10 w-16 h-16 animate-spin-slow opacity-20" viewBox="0 0 60 60">
+          <circle cx="30" cy="30" r="25" fill="none" stroke="#818cf8" strokeWidth="1" strokeDasharray="8 4" />
+        </svg>
+
+        {/* Floating dots */}
+        <svg className="absolute top-1/3 right-1/4 w-4 h-4 animate-float-slow" viewBox="0 0 10 10">
+          <circle cx="5" cy="5" r="3" fill="#a78bfa" opacity="0.4" />
+        </svg>
+        <svg className="absolute top-1/2 left-1/6 w-3 h-3 animate-float" viewBox="0 0 10 10">
+          <circle cx="5" cy="5" r="3" fill="#818cf8" opacity="0.3" />
+        </svg>
+      </div>
+
+      <div className="max-w-2xl mx-auto text-center relative z-10">
         {/* Avatar */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className="relative inline-block mb-6"
         >
           <div className="relative">
             <img
               src={personalInfo.avatar}
               alt={personalInfo.name}
-              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-white shadow-lg transition-transform duration-300 hover:scale-[1.02]"
+              className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover avatar-glow transition-transform duration-300 hover:scale-105"
             />
             {/* Online Status Dot */}
             <span className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-3 border-white rounded-full animate-pulse" />
           </div>
         </motion.div>
 
-        {/* Name */}
+        {/* Name — shimmer effect */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-          className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2"
+          className="text-2xl sm:text-3xl font-bold mb-2 shimmer-text"
         >
           {t("hero.greeting")} {personalInfo.nickname}
         </motion.h1>
@@ -52,7 +96,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          className="text-gray-400 text-sm mb-6"
+          className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-sm font-medium mb-6"
         >
           {t("hero.tagline")}
         </motion.p>
@@ -98,7 +142,7 @@ export function HeroSection() {
                 delay: 0.4 + index * 0.05,
                 ease: [0.4, 0, 0.2, 1],
               }}
-              className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium transition-transform duration-200 hover:scale-105 ${badge.color}`}
+              className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium glow-hover cursor-default ${badge.color}`}
             >
               <span>{badge.icon}</span>
               <span>{badge.label}</span>
@@ -111,7 +155,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="text-gray-600 max-w-lg mx-auto"
+          className="text-gray-600 max-w-lg mx-auto leading-relaxed"
         >
           {t("hero.passion")}
         </motion.p>

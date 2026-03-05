@@ -7,8 +7,17 @@ export function TechStackSection() {
   const { t } = useLang();
 
   return (
-    <section className="py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <section className="relative py-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Decorative SVG */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <svg className="absolute top-10 -right-8 w-32 h-32 animate-float opacity-10" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#818cf8" strokeWidth="0.5" />
+          <circle cx="50" cy="50" r="30" fill="none" stroke="#a78bfa" strokeWidth="0.5" />
+          <circle cx="50" cy="50" r="15" fill="none" stroke="#c4b5fd" strokeWidth="0.5" />
+        </svg>
+      </div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,7 +29,7 @@ export function TechStackSection() {
           <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
             {t("tech.label")}
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
+          <h2 className="text-xl sm:text-2xl font-bold shimmer-text mt-1">
             {t("tech.title")}
           </h2>
         </motion.div>
@@ -33,8 +42,9 @@ export function TechStackSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+            className="glass-card rounded-2xl p-4"
           >
-            <h3 className="text-sm font-medium text-gray-500 mb-3">
+            <h3 className="text-sm font-medium text-gray-500 mb-3 px-3">
               {t("tech.languages")}
             </h3>
             <div className="space-y-1">
@@ -62,8 +72,9 @@ export function TechStackSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            className="glass-card rounded-2xl p-4"
           >
-            <h3 className="text-sm font-medium text-gray-500 mb-3">
+            <h3 className="text-sm font-medium text-gray-500 mb-3 px-3">
               {t("tech.business")}
             </h3>
             <div className="space-y-1">
@@ -91,8 +102,9 @@ export function TechStackSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className="glass-card rounded-2xl p-4"
           >
-            <h3 className="text-sm font-medium text-gray-500 mb-3">
+            <h3 className="text-sm font-medium text-gray-500 mb-3 px-3">
               {t("tech.analytics")}
             </h3>
             <div className="space-y-1">

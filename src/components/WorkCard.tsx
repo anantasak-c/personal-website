@@ -64,9 +64,9 @@ export function WorkCard({
         type="button"
         onClick={() => setOpen(true)}
         className={cn(
-          "group bg-gray-50 rounded-2xl p-5 w-full text-left",
-          "transition-all duration-300 ease-out",
-          "hover:-translate-y-1 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+          "group bg-gray-50/80 backdrop-blur-sm rounded-2xl p-5 w-full text-left",
+          "transition-all duration-300 ease-out gradient-border",
+          "hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-100/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400",
           className
         )}
       >

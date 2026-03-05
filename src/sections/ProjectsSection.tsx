@@ -21,8 +21,15 @@ export function ProjectsSection() {
   }, []);
 
   return (
-    <section className="py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <section className="relative py-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Decorative SVG */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <svg className="absolute -top-6 left-1/3 w-28 h-28 animate-float-slow opacity-10" viewBox="0 0 100 100">
+          <path d="M50 5 L95 27.5 L95 72.5 L50 95 L5 72.5 L5 27.5 Z" fill="none" stroke="#818cf8" strokeWidth="1" />
+        </svg>
+      </div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -35,7 +42,7 @@ export function ProjectsSection() {
             <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
               {t("blog.label")}
             </span>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
+            <h2 className="text-xl sm:text-2xl font-bold shimmer-text mt-1">
               {t("blog.title")}
             </h2>
           </div>
@@ -43,7 +50,7 @@ export function ProjectsSection() {
             <Button
               variant="default"
               size="sm"
-              className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4"
+              className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-lg px-4 shadow-md shadow-indigo-200/50 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-300/50"
               asChild
             >
               <a href="/blog" className="flex items-center gap-2">
