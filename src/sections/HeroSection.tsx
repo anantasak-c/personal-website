@@ -44,7 +44,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
           className="text-gray-500 mb-1"
         >
-          {personalInfo.subtitle}
+          {t("hero.subtitle")}
         </motion.p>
 
         {/* Tagline */}
@@ -54,7 +54,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           className="text-gray-400 text-sm mb-6"
         >
-          {personalInfo.tagline}
+          {t("hero.tagline")}
         </motion.p>
 
         {/* Social Links */}
@@ -113,7 +113,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
           className="text-gray-600 max-w-lg mx-auto"
         >
-          {personalInfo.passion}
+          {t("hero.passion")}
         </motion.p>
       </div>
     </section>

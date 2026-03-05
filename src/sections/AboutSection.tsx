@@ -19,7 +19,7 @@ export function AboutSection() {
             className="bg-gray-50 rounded-2xl p-6"
           >
             <h3 className="text-lg font-semibold text-gray-900 mb-4 leading-relaxed">
-              I'm Project Manager, Tech Entrepreneur, Public Speaker
+              {t("about.profileSummary")}
             </h3>
 
             {/* Education */}
@@ -38,7 +38,7 @@ export function AboutSection() {
             {/* Highlight */}
             <div className="bg-white rounded-xl p-4 border border-gray-100">
               <p className="text-sm text-gray-600 leading-relaxed">
-                <span className="font-medium text-gray-900">Highlight:</span>{" "}
+                <span className="font-medium text-gray-900">{t("about.highlight")}:</span>{" "}
                 {education.highlight}
               </p>
             </div>

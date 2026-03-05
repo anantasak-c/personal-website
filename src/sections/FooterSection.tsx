@@ -16,10 +16,10 @@ export function FooterSection() {
 
   const footerLinks = {
     menu: [
-      { label: "Profile", href: "#" },
-      { label: "My Projects", href: "#projects" },
-      { label: "Tech Stack", href: "#tech" },
-      { label: "Contact", href: "#contact" },
+      { label: t("footer.profile"), href: "#" },
+      { label: t("footer.myBlog"), href: "/blog" },
+      { label: t("footer.techStack"), href: "#tech" },
+      { label: t("footer.contact"), href: "#contact" },
     ],
     social: [
       { label: "LinkedIn", icon: Linkedin, href: "#" },
@@ -97,7 +97,7 @@ export function FooterSection() {
             transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
             <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">
-              Menu
+              {t("footer.menu")}
             </h4>
             <ul className="space-y-2">
               {footerLinks.menu.map((link) => (
@@ -121,7 +121,7 @@ export function FooterSection() {
             transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
             <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">
-              Follow
+              {t("footer.follow")}
             </h4>
             <ul className="space-y-2">
               {footerLinks.social.map((link) => (

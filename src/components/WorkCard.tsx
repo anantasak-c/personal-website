@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useLang } from "@/i18n/LanguageContext";
 
 interface WorkCardProps {
   company: string;
@@ -30,6 +31,7 @@ export function WorkCard({
   logoColor,
   className,
 }: WorkCardProps) {
+  const { t } = useLang();
   const descriptionBlocks = description
     .split(/\n\s*\n/)
     .map((block) => block.trim())
@@ -79,7 +81,7 @@ export function WorkCard({
         </button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-xl">
+      <DialogContent className="max-w-[calc(100vw-2rem)] sm:max-w-xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{company}</DialogTitle>
           <DialogDescription className="text-sm text-gray-500">
@@ -89,7 +91,7 @@ export function WorkCard({
         <div className="space-y-3 text-sm text-gray-600">
           <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-gray-400">
             <StatusBadge status={status} />
-            <span>{status === "present" ? "Currently" : "Previously"}</span>
+            <span>{status === "present" ? t("work.currently") : t("work.previously")}</span>
           </div>
           <div className="space-y-3 leading-relaxed text-gray-700">
             {descriptionBlocks.map((block, idx) => (

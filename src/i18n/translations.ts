@@ -5,18 +5,31 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Hero
     "hero.greeting": "สวัสดี ผม",
     "hero.iam": "ผมเป็น",
+    "hero.subtitle": "เว็บไซต์ส่วนตัวของ Anantasak Charoensuk",
+    "hero.tagline": "เส้นทางของผม แบ่งปันความรู้ไปตลอดทาง",
+    "hero.passion": "ผู้เรียนรู้ตลอดชีวิต ที่อยู่ตรงจุดตัดระหว่างการเงิน เทคโนโลยี และการสร้างผลิตภัณฑ์ที่มีคุณค่า",
+    // Role Badges
+    "badge.techEntrepreneur": "ผู้ประกอบการเทค",
+    "badge.contentCreator": "ครีเอเตอร์",
+    "badge.generalist": "เจเนอรัลลิสต์",
+    "badge.aiEngineer": "วิศวกร AI",
     // Skills
     "skills.label": "ทักษะ",
-    "skills.title": "ความสามารถ",
+    "skills.title": "ความสามารถของผม",
     // About / Life Goal
-    "about.label": "เกี่ยวกับ",
+    "about.label": "ที่ตั้ง",
+    "about.basedIn": "ที่ตั้ง",
     "about.lifeGoal": "เป้าหมายชีวิต",
     "about.education": "การศึกษา",
+    "about.highlight": "ไฮไลท์",
+    "about.profileSummary": "ผมเป็น Project Manager, Tech Entrepreneur, Public Speaker",
     // Work History
     "work.label": "ประสบการณ์",
     "work.title": "ประวัติการทำงาน",
     "work.viewAll": "ดูทั้งหมด",
     "work.showLess": "แสดงน้อยลง",
+    "work.currently": "ปัจจุบัน",
+    "work.previously": "ก่อนหน้า",
     // Blog
     "blog.label": "บล็อก",
     "blog.title": "บทความของฉัน",
@@ -38,6 +51,12 @@ export const translations: Record<Lang, Record<string, string>> = {
     "tech.business": "เครื่องมือธุรกิจ",
     "tech.analytics": "วิเคราะห์ข้อมูล",
     // Footer
+    "footer.menu": "เมนู",
+    "footer.follow": "ติดตาม",
+    "footer.profile": "โปรไฟล์",
+    "footer.myBlog": "บทความ",
+    "footer.techStack": "เทคโนโลยี",
+    "footer.contact": "ติดต่อ",
     "footer.rights": "สงวนลิขสิทธิ์",
     "footer.built": "สร้างด้วย React + Tailwind CSS",
     // Language
@@ -47,18 +66,31 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Hero
     "hero.greeting": "Hi, I'm",
     "hero.iam": "I am",
+    "hero.subtitle": "Personal website of Anantasak Charoensuk",
+    "hero.tagline": "My Journey, Sharing Knowledge Along the Way",
+    "hero.passion": "A lifelong learner navigating the intersection of finance, technology, and building impactful products.",
+    // Role Badges
+    "badge.techEntrepreneur": "Tech Entrepreneur",
+    "badge.contentCreator": "Content Creator",
+    "badge.generalist": "Generalist",
+    "badge.aiEngineer": "AI Engineer",
     // Skills
     "skills.label": "SKILLS",
-    "skills.title": "Capabilities",
+    "skills.title": "Tons of skill that I have",
     // About / Life Goal
-    "about.label": "ABOUT",
+    "about.label": "Based in",
+    "about.basedIn": "Based in",
     "about.lifeGoal": "Life Goal",
     "about.education": "Education",
+    "about.highlight": "Highlight",
+    "about.profileSummary": "I'm Project Manager, Tech Entrepreneur, Public Speaker",
     // Work History
     "work.label": "EXPERIENCE",
     "work.title": "Work History",
     "work.viewAll": "View All",
     "work.showLess": "Show Less",
+    "work.currently": "Currently",
+    "work.previously": "Previously",
     // Blog
     "blog.label": "BLOG",
     "blog.title": "My Blog",
@@ -76,10 +108,16 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Tech Stack
     "tech.label": "TECHNOLOGY",
     "tech.title": "Tech Stack",
-    "tech.languages": "Languages",
-    "tech.business": "Business Tools",
-    "tech.analytics": "Analytics",
+    "tech.languages": "Programming Languages",
+    "tech.business": "Business & Design",
+    "tech.analytics": "Analytics & Logging",
     // Footer
+    "footer.menu": "Menu",
+    "footer.follow": "Follow",
+    "footer.profile": "Profile",
+    "footer.myBlog": "My Blog",
+    "footer.techStack": "Tech Stack",
+    "footer.contact": "Contact",
     "footer.rights": "All rights reserved",
     "footer.built": "Built with React + Tailwind CSS",
     // Language
