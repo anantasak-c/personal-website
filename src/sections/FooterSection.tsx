@@ -22,10 +22,10 @@ export function FooterSection() {
       { label: t("footer.contact"), href: "#contact" },
     ],
     social: [
-      { label: "LinkedIn", icon: Linkedin, href: "#" },
+      { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/anantasak-charoensuk-675544222/" },
       { label: "LINE", icon: MessageCircle, href: "#" },
-      { label: "Facebook", icon: Facebook, href: "#" },
-      { label: "Instagram", icon: Instagram, href: "#" },
+      { label: "Facebook", icon: Facebook, href: "https://www.facebook.com/m.anan.tasuk/" },
+      { label: "Instagram", icon: Instagram, href: "https://www.instagram.com/m_anantasak/" },
     ],
   };
 
@@ -142,6 +142,8 @@ export function FooterSection() {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="text-sm text-gray-600 hover:text-indigo-600 transition-colors duration-300 flex items-center gap-2"
                   >
                     <link.icon className="w-4 h-4" />

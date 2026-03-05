@@ -13,11 +13,11 @@ export const personalInfo = {
 
 // Social Links
 export const socialLinks = [
-  { name: "LinkedIn", icon: "Linkedin", url: "https://linkedin.com" },
-  { name: "GitHub", icon: "Github", url: "https://github.com" },
-  { name: "Facebook", icon: "Facebook", url: "https://facebook.com" },
-  { name: "Instagram", icon: "Instagram", url: "https://instagram.com" },
-  { name: "Email", icon: "Mail", url: "mailto:anantasuk000@gmail.com" },
+  { name: "LinkedIn", icon: "Linkedin", url: "https://www.linkedin.com/in/anantasak-charoensuk-675544222/" },
+  { name: "GitHub", icon: "Github", url: "https://github.com/anantasak-c" },
+  { name: "Facebook", icon: "Facebook", url: "https://www.facebook.com/m.anan.tasuk/" },
+  { name: "Instagram", icon: "Instagram", url: "https://www.instagram.com/m_anantasak/" },
+  { name: "Email", icon: "Mail", url: "mailto:Anantasuk000@gmail.com" },
 ];
 
 // Role Badges
