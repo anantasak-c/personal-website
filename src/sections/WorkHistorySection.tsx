@@ -31,7 +31,7 @@ export function WorkHistorySection() {
         </motion.div>
 
         {/* Work Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
           {visibleWork.map((work, index) => (
             <motion.div
               key={work.company}
@@ -43,6 +43,7 @@ export function WorkHistorySection() {
                 delay: index * 0.1,
                 ease: [0.4, 0, 0.2, 1],
               }}
+              className="h-full"
             >
               <WorkCard {...work} />
             </motion.div>
