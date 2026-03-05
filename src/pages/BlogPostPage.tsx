@@ -1,19 +1,41 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
-import { posts } from "@/blog/posts-registry";
+import { useParams, Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
-import { ArrowLeft, Clock, Tag } from "lucide-react";
+import { ArrowLeft, Clock, Tag, Loader2 } from "lucide-react";
 import { personalInfo } from "@/data/content";
+import { sanityClient, POST_BY_SLUG_QUERY, urlFor } from "@/lib/sanity";
+import { PortableText } from "@portabletext/react";
+import type { SanityPost } from "@/types/blog";
 import 'highlight.js/styles/github.css';
 
-// Lazy-load all MDX files
-const mdxModules = import.meta.glob("../blog/*.mdx");
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const portableTextComponents: any = {
+  types: {
+    image: ({ value }: { value: { asset: unknown; alt?: string; caption?: string } }) => (
+      <figure className="my-8">
+        <img
+          src={urlFor(value.asset).width(800).url()}
+          alt={value.alt || ""}
+          className="w-full rounded-xl object-cover"
+        />
+        {value.caption && (
+          <figcaption className="text-center text-sm text-gray-400 mt-2">{value.caption}</figcaption>
+        )}
+      </figure>
+    ),
+  },
+  marks: {
+    link: ({ value, children }: { value: { href: string }; children: React.ReactNode }) => (
+      <a href={value.href} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+        {children}
+      </a>
+    ),
+  },
+};
 
 export function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const post = posts.find((p) => p.slug === slug);
-
-  const [PostContent, setPostContent] = useState<React.ComponentType | null>(null);
+  const [post, setPost] = useState<SanityPost | null>(null);
   const [loading, setLoading] = useState(true);
 
   useSEO({
@@ -24,18 +46,29 @@ export function BlogPostPage() {
 
   useEffect(() => {
     if (!slug) return;
-    const key = `../blog/${slug}.mdx`;
-    if (mdxModules[key]) {
-      mdxModules[key]().then((mod: any) => {
-        setPostContent(() => mod.default);
-        setLoading(false);
-      });
-    } else {
-      setLoading(false);
-    }
+    sanityClient
+      .fetch<SanityPost>(POST_BY_SLUG_QUERY, { slug })
+      .then((data) => setPost(data ?? null))
+      .catch(() => setPost(null))
+      .finally(() => setLoading(false));
   }, [slug]);
 
-  if (!post) return <Navigate to="/blog" replace />;
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
+      </div>
+    );
+  }
+
+  if (!post) {
+    return (
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-4">
+        <p className="text-gray-500">ไม่พบบทความ</p>
+        <Link to="/blog" className="text-blue-600 hover:underline text-sm">กลับหน้า Blog</Link>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -58,40 +91,44 @@ export function BlogPostPage() {
       {/* Article */}
       <article className="max-w-3xl mx-auto px-6 py-16">
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {post.tags.map((tag) => (
-            <span
-              key={tag}
-              className="flex items-center gap-1 text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full"
-            >
-              <Tag className="w-3 h-3" />
-              {tag}
-            </span>
-          ))}
-        </div>
+        {post.tags?.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {post.tags.map((tag) => (
+              <span
+                key={tag}
+                className="flex items-center gap-1 text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full"
+              >
+                <Tag className="w-3 h-3" />
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
 
         {/* Title */}
         <h1 className="text-3xl font-bold text-gray-900 mb-4 leading-snug">{post.title}</h1>
 
         {/* Meta */}
         <div className="flex items-center gap-4 text-sm text-gray-400 mb-10 pb-10 border-b border-gray-100">
-          <span>
-            {new Date(post.date).toLocaleDateString("th-TH", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </span>
-          <span className="flex items-center gap-1">
-            <Clock className="w-4 h-4" />
-            {post.readTime}
-          </span>
+          {post.publishedAt && (
+            <span>
+              {new Date(post.publishedAt).toLocaleDateString("th-TH", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+          )}
+          {post.readTime && (
+            <span className="flex items-center gap-1">
+              <Clock className="w-4 h-4" />
+              {post.readTime}
+            </span>
+          )}
         </div>
 
-        {/* Content */}
-        {loading ? (
-          <div className="flex items-center justify-center py-20 text-gray-400">กำลังโหลด...</div>
-        ) : PostContent ? (
+        {/* Body */}
+        {post.body ? (
           <div className="prose prose-gray prose-lg max-w-none
             prose-headings:font-bold prose-headings:text-gray-900
             prose-p:text-gray-600 prose-p:leading-relaxed
@@ -101,10 +138,10 @@ export function BlogPostPage() {
             prose-blockquote:border-l-blue-400 prose-blockquote:text-gray-500
             prose-strong:text-gray-900
             prose-ul:text-gray-600 prose-ol:text-gray-600">
-            <PostContent />
+            <PortableText value={post.body} components={portableTextComponents} />
           </div>
         ) : (
-          <p className="text-gray-400 text-center py-20">ไม่พบบทความ</p>
+          <p className="text-gray-400 text-center py-20">บทความนี้ยังไม่มีเนื้อหา</p>
         )}
 
         {/* Back link */}
