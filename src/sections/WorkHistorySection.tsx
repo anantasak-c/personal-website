@@ -30,20 +30,19 @@ export function WorkHistorySection() {
           </h2>
         </motion.div>
 
-        {/* Work Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+        {/* Work Cards */}
+        <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3">
           {visibleWork.map((work, index) => (
             <motion.div
               key={work.company}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: "-30px" }}
               transition={{
-                duration: 0.5,
-                delay: index * 0.1,
+                duration: 0.4,
+                delay: index * 0.08,
                 ease: [0.4, 0, 0.2, 1],
               }}
-              className="h-full"
             >
               <WorkCard {...work} />
             </motion.div>
