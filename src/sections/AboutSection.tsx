@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { personalInfo, lifeGoal, education } from "@/data/content";
 import { MapPin, Target, GraduationCap } from "lucide-react";
+import { useLang } from "@/i18n/LanguageContext";
 
 export function AboutSection() {
+  const { t } = useLang();
+
   return (
     <section className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -55,7 +58,7 @@ export function AboutSection() {
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Based in
+                  {t("about.label")}
                 </span>
               </div>
 
@@ -99,7 +102,7 @@ export function AboutSection() {
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {lifeGoal.title}
+                  {t("about.lifeGoal")}
                 </span>
               </div>
 

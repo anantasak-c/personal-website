@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Loader2 } from "lucide-react";
 import { sanityClient, LATEST_POSTS_QUERY } from "@/lib/sanity";
 import type { SanityPost } from "@/types/blog";
+import { useLang } from "@/i18n/LanguageContext";
 
 export function ProjectsSection() {
+  const { t } = useLang();
   const [posts, setPosts] = useState<SanityPost[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,10 +33,10 @@ export function ProjectsSection() {
         >
           <div>
             <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-              BLOG
+              {t("blog.label")}
             </span>
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
-              My Blog
+              {t("blog.title")}
             </h2>
           </div>
           <div className="flex items-center gap-3">
@@ -45,7 +47,7 @@ export function ProjectsSection() {
               asChild
             >
               <a href="/blog" className="flex items-center gap-2">
-                Blog ทั้งหมด
+                {t("blog.all")}
                 <ExternalLink className="w-4 h-4" />
               </a>
             </Button>
@@ -56,12 +58,12 @@ export function ProjectsSection() {
         {loading ? (
           <div className="flex items-center justify-center py-16 text-gray-400">
             <Loader2 className="w-5 h-5 animate-spin mr-2" />
-            กำลังโหลด...
+            {t("blog.loading")}
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {posts.length === 0 ? (
-              <p className="text-sm text-gray-400 col-span-2 text-center py-8">ยังไม่มีบทความ — เร็วๆ นี้!</p>
+              <p className="text-sm text-gray-400 col-span-2 text-center py-8">{t("blog.empty")}</p>
             ) : (
               posts.map((post, index) => (
                 <motion.div

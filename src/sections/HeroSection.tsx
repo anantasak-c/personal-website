@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { personalInfo, socialLinks, roleBadges } from "@/data/content";
 import { SocialIcon } from "@/components/SocialIcon";
+import { useLang } from "@/i18n/LanguageContext";
 
 export function HeroSection() {
+  const { t } = useLang();
+
   return (
     <section className="pt-12 pb-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto text-center">
@@ -31,7 +34,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2"
         >
-          Hi, I'm {personalInfo.nickname}
+          {t("hero.greeting")} {personalInfo.nickname}
         </motion.h1>
 
         {/* Subtitle */}
@@ -84,7 +87,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.35, ease: [0.4, 0, 0.2, 1] }}
           className="flex flex-wrap justify-center gap-2 mb-6"
         >
-          <span className="text-gray-600 mr-1">I am</span>
+          <span className="text-gray-600 mr-1">{t("hero.iam")}</span>
           {roleBadges.map((badge, index) => (
             <motion.span
               key={badge.label}

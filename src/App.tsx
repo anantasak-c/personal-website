@@ -8,10 +8,12 @@ import { TechStackSection } from "@/sections/TechStackSection";
 import { FooterSection } from "@/sections/FooterSection";
 import { BlogListPage } from "@/pages/BlogListPage";
 import { BlogPostPage } from "@/pages/BlogPostPage";
+import { LanguageToggle } from "@/components/LanguageToggle";
 
 function PortfolioPage() {
   return (
     <main className="min-h-screen bg-white">
+      <LanguageToggle />
       <HeroSection />
       <SkillsSection />
       <AboutSection />

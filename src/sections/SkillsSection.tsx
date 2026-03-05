@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { skills } from "@/data/content";
 import { SkillTag } from "@/components/SkillTag";
+import { useLang } from "@/i18n/LanguageContext";
 
 export function SkillsSection() {
+  const { t } = useLang();
+
   return (
     <section className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -15,10 +18,10 @@ export function SkillsSection() {
           className="text-center mb-6"
         >
           <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-            SKILLS
+            {t("skills.label")}
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
-            Tons of skill that I have
+            {t("skills.title")}
           </h2>
         </motion.div>
 

@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { techStack } from "@/data/content";
 import { TechItem } from "@/components/TechItem";
+import { useLang } from "@/i18n/LanguageContext";
 
 export function TechStackSection() {
+  const { t } = useLang();
+
   return (
     <section className="py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -15,10 +18,10 @@ export function TechStackSection() {
           className="mb-6"
         >
           <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-            TECH STACK
+            {t("tech.label")}
           </span>
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
-            What I Use
+            {t("tech.title")}
           </h2>
         </motion.div>
 
@@ -32,7 +35,7 @@ export function TechStackSection() {
             transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
             <h3 className="text-sm font-medium text-gray-500 mb-3">
-              Programming Languages
+              {t("tech.languages")}
             </h3>
             <div className="space-y-1">
               {techStack.languages.map((tech, index) => (
@@ -61,7 +64,7 @@ export function TechStackSection() {
             transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
             <h3 className="text-sm font-medium text-gray-500 mb-3">
-              Business & Design
+              {t("tech.business")}
             </h3>
             <div className="space-y-1">
               {techStack.business.map((tech, index) => (
@@ -90,7 +93,7 @@ export function TechStackSection() {
             transition={{ duration: 0.5, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
             <h3 className="text-sm font-medium text-gray-500 mb-3">
-              Analytics & Logging
+              {t("tech.analytics")}
             </h3>
             <div className="space-y-1">
               {techStack.analytics.map((tech, index) => (

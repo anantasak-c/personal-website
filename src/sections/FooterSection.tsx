@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import { personalInfo } from "@/data/content";
 import { Copy, Check, Linkedin, MessageCircle, Facebook, Instagram } from "lucide-react";
 import { useState } from "react";
+import { useLang } from "@/i18n/LanguageContext";
 
 export function FooterSection() {
+  const { t } = useLang();
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
@@ -146,7 +148,7 @@ export function FooterSection() {
           className="pt-8 border-t border-gray-100 text-center"
         >
           <p className="text-sm text-gray-400">
-            2025, {personalInfo.name}
+            © 2025 {personalInfo.name}. {t("footer.rights")}
           </p>
         </motion.div>
       </div>

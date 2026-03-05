@@ -6,6 +6,7 @@ import { personalInfo } from "@/data/content";
 import { sanityClient, POST_BY_SLUG_QUERY, urlFor } from "@/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import type { SanityPost } from "@/types/blog";
+import { useLang } from "@/i18n/LanguageContext";
 import 'highlight.js/styles/github.css';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,6 +36,7 @@ const portableTextComponents: any = {
 
 export function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
+  const { t, lang } = useLang();
   const [post, setPost] = useState<SanityPost | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -64,8 +66,8 @@ export function BlogPostPage() {
   if (!post) {
     return (
       <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-4">
-        <p className="text-gray-500">ไม่พบบทความ</p>
-        <Link to="/blog" className="text-blue-600 hover:underline text-sm">กลับหน้า Blog</Link>
+        <p className="text-gray-500">{t("blog.notFound")}</p>
+        <Link to="/blog" className="text-blue-600 hover:underline text-sm">{t("blog.backHome")}</Link>
       </div>
     );
   }
@@ -80,7 +82,7 @@ export function BlogPostPage() {
             className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            กลับ Blog
+            {t("blog.back")}
           </Link>
           <Link to="/" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors">
             {personalInfo.name}
@@ -112,7 +114,7 @@ export function BlogPostPage() {
         <div className="flex items-center gap-4 text-sm text-gray-400 mb-10 pb-10 border-b border-gray-100">
           {post.publishedAt && (
             <span>
-              {new Date(post.publishedAt).toLocaleDateString("th-TH", {
+              {new Date(post.publishedAt).toLocaleDateString(lang === "th" ? "th-TH" : "en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -141,7 +143,7 @@ export function BlogPostPage() {
             <PortableText value={post.body} components={portableTextComponents} />
           </div>
         ) : (
-          <p className="text-gray-400 text-center py-20">บทความนี้ยังไม่มีเนื้อหา</p>
+          <p className="text-gray-400 text-center py-20">{t("blog.noContent")}</p>
         )}
 
         {/* Back link */}
@@ -151,7 +153,7 @@ export function BlogPostPage() {
             className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            ดูบทความทั้งหมด
+            {t("blog.backAll")}
           </Link>
         </div>
       </article>
