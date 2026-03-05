@@ -195,15 +195,14 @@ export const blogPosts: BlogPostMeta[] = [
 // Tech Stack
 export const techStack = {
   languages: [
-    { name: "Python", description: "Main language for data analysis and automation", icon: "🐍", main: true },
+    { name: "SQL", description: "Main\nDatabase queries and management", icon: "�️", main: true },
     { name: "JavaScript", description: "Web development and scripting", icon: "📜" },
-    { name: "SQL", description: "Database queries and management", icon: "🗄️" },
+    { name: "Python", description: "Main language for data analysis and automation", icon: "�", main: true },
     { name: "R", description: "Statistical analysis", icon: "📊" },
-    { name: "Solidity", description: "Smart contract development", icon: "⛓️" },
   ],
   business: [
     { name: "n8n", description: "Workflow automation platform", icon: "⚡" },
-    { name: "Figma", description: "UI/UX design and prototyping", icon: "🎨" },
+    { name: "Cursor, Windsurf", description: "A coding program built with AI as its core.", icon: "🤖" },
     { name: "Looker", description: "Data visualization", icon: "📈" },
     { name: "Google Sheets", description: "Spreadsheet automation", icon: "📑" },
   ],
