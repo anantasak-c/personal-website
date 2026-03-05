@@ -38,6 +38,28 @@ export function WorkCard({
     .map((block) => block.trim())
     .filter(Boolean);
 
+  const URL_REGEX = /(https?:\/\/[^\s]+)/g;
+
+  function renderBlock(text: string) {
+    const parts = text.split(URL_REGEX);
+    return parts.map((part, i) =>
+      URL_REGEX.test(part) ? (
+        <a
+          key={i}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline break-all hover:text-blue-800"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {part}
+        </a>
+      ) : (
+        <span key={i}>{part}</span>
+      )
+    );
+  }
+
   return (
     <>
       <button
@@ -96,7 +118,7 @@ export function WorkCard({
             </div>
             <div className="space-y-3 leading-relaxed text-gray-700">
               {descriptionBlocks.map((block, idx) => (
-                <p key={idx}>{block}</p>
+                <p key={idx}>{renderBlock(block)}</p>
               ))}
             </div>
           </div>
