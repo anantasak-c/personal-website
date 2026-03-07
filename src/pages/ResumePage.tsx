@@ -17,11 +17,45 @@ export function ResumePage() {
     if (!resumeRef.current) return;
     setExporting(true);
     try {
+      // Force a fixed width so responsive breakpoints render consistently
+      const fixedWidth = 896; // max-w-4xl = 896px
+
       const canvas = await html2canvas(resumeRef.current, {
         scale: 2,
         useCORS: true,
+        allowTaint: true,
         backgroundColor: "#ffffff",
         logging: false,
+        windowWidth: fixedWidth + 64, // add padding for margin
+        width: fixedWidth,
+        onclone: (clonedDoc: Document) => {
+          const resumeEl = clonedDoc.querySelector("[data-resume]") as HTMLElement;
+          if (resumeEl) {
+            resumeEl.style.width = `${fixedWidth}px`;
+            resumeEl.style.maxWidth = `${fixedWidth}px`;
+            resumeEl.style.margin = "0";
+            resumeEl.style.boxShadow = "none";
+          }
+          // Force all grid containers to use 3 columns
+          clonedDoc.querySelectorAll(".md\\:grid-cols-3, [class*='md:grid-cols-3']").forEach((el) => {
+            (el as HTMLElement).style.gridTemplateColumns = "repeat(3, minmax(0, 1fr))";
+          });
+          // Force skills grid to 3 columns
+          clonedDoc.querySelectorAll(".md\\:grid-cols-3, [class*='grid-cols-2']").forEach((el) => {
+            const htmlEl = el as HTMLElement;
+            if (htmlEl.style.gridTemplateColumns === "") {
+              htmlEl.style.gridTemplateColumns = "repeat(3, minmax(0, 1fr))";
+            }
+          });
+          // Fix profile image
+          clonedDoc.querySelectorAll("img.rounded-full").forEach((img) => {
+            const imgEl = img as HTMLElement;
+            imgEl.style.width = "128px";
+            imgEl.style.height = "128px";
+            imgEl.style.borderRadius = "9999px";
+            imgEl.style.objectFit = "cover";
+          });
+        },
       });
 
       const imgWidth = 210; // A4 width in mm
@@ -30,7 +64,7 @@ export function ResumePage() {
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "mm",
-        format: [imgWidth, imgHeight], // custom height = exact content height
+        format: [imgWidth, imgHeight],
       });
 
       const imgData = canvas.toDataURL("image/png");
@@ -70,7 +104,7 @@ export function ResumePage() {
       </div>
 
       {/* Resume Container */}
-      <div ref={resumeRef} className="max-w-4xl mx-auto bg-white shadow-lg print:shadow-none">
+      <div ref={resumeRef} data-resume className="max-w-4xl mx-auto bg-white shadow-lg print:shadow-none">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 print:bg-gradient-to-r print:from-gray-800 print:to-gray-900">
           <div className="flex items-center justify-between gap-8">
