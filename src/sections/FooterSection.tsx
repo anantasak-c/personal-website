@@ -17,6 +17,7 @@ export function FooterSection() {
   const footerLinks = {
     menu: [
       { label: t("footer.profile"), href: "#" },
+      { label: "Resume", href: "/resume" },
       { label: t("footer.myBlog"), href: "/blog" },
       { label: t("footer.techStack"), href: "#tech" },
       { label: t("footer.contact"), href: "#contact" },

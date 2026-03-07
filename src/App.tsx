@@ -8,6 +8,7 @@ import { TechStackSection } from "@/sections/TechStackSection";
 import { FooterSection } from "@/sections/FooterSection";
 import { BlogListPage } from "@/pages/BlogListPage";
 import { BlogPostPage } from "@/pages/BlogPostPage";
+import { ResumePage } from "@/pages/ResumePage";
 function PortfolioPage() {
   return (
     <main className="min-h-screen bg-white">
@@ -26,6 +27,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<PortfolioPage />} />
+      <Route path="/resume" element={<ResumePage />} />
       <Route path="/blog" element={<BlogListPage />} />
       <Route path="/blog/:slug" element={<BlogPostPage />} />
     </Routes>

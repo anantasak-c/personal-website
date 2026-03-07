@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { personalInfo, socialLinks, roleBadges } from "@/data/content";
 import { SocialIcon } from "@/components/SocialIcon";
 import { useLang } from "@/i18n/LanguageContext";
+import { FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   const { t } = useLang();
@@ -106,7 +108,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25, ease: [0.4, 0, 0.2, 1] }}
-          className="flex justify-center gap-3 mb-6"
+          className="flex justify-center gap-3 mb-4"
         >
           {socialLinks.map((link, index) => (
             <motion.div
@@ -122,6 +124,24 @@ export function HeroSection() {
               <SocialIcon {...link} />
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Resume Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          className="flex justify-center mb-6"
+        >
+          <Button
+            asChild
+            className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white shadow-md shadow-indigo-200/50 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-300/50"
+          >
+            <a href="/resume" className="flex items-center gap-2">
+              <FileText className="w-4 h-4" />
+              View Resume
+            </a>
+          </Button>
         </motion.div>
 
         {/* Role Badges */}

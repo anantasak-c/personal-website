@@ -263,3 +263,67 @@
     scroll-behavior: auto;
   }
 }
+
+/* Print styles for Resume */
+@media print {
+  @page {
+    size: A4;
+    margin: 0.5cm;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:bg-white {
+    background-color: white !important;
+  }
+
+  .print\:py-0 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  .print\:border-t {
+    border-top-width: 1px !important;
+  }
+
+  .print\:block {
+    display: block !important;
+  }
+
+  /* Ensure gradients print correctly */
+  .print\:bg-gradient-to-r {
+    background-image: linear-gradient(to right, var(--tw-gradient-stops)) !important;
+  }
+
+  .print\:from-gray-800 {
+    --tw-gradient-from: #1f2937 !important;
+    --tw-gradient-to: rgb(31 41 55 / 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+
+  .print\:to-gray-900 {
+    --tw-gradient-to: #111827 !important;
+  }
+
+  /* Prevent page breaks inside important elements */
+  section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Ensure links are visible in print */
+  a[href]:after {
+    content: none !important;
+  }
+}
