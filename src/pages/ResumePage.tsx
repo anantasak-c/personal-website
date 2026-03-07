@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import { personalInfo, workHistory, skills, education, techStack, socialLinks } from "@/data/content";
-import { Mail, MapPin, Linkedin, Github, Download, Printer, Loader2 } from "lucide-react";
+import { personalInfo, workHistory, skills, education, techStack } from "@/data/content";
+import { Mail, MapPin, Globe, Download, Printer, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -41,12 +41,8 @@ export function ResumePage() {
     }
   };
 
-  // Get social media links
-  const linkedinUrl = socialLinks.find(s => s.name === "LinkedIn")?.url || "";
-  const githubUrl = socialLinks.find(s => s.name === "GitHub")?.url || "";
-
-  // Portfolio URL for QR code
-  const portfolioUrl = window.location.origin;
+  // Portfolio URL
+  const portfolioUrl = "https://personal-website-orcin-xi.vercel.app";
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 print:bg-white print:py-0">
@@ -77,7 +73,7 @@ export function ResumePage() {
       <div ref={resumeRef} className="max-w-4xl mx-auto bg-white shadow-lg print:shadow-none">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 print:bg-gradient-to-r print:from-gray-800 print:to-gray-900">
-          <div className="flex items-start justify-between gap-6">
+          <div className="flex items-center justify-between gap-8">
             <div className="flex-1">
               <h1 className="text-4xl font-bold mb-2">{personalInfo.name}</h1>
               <p className="text-xl text-indigo-100 mb-4">{personalInfo.title}</p>
@@ -85,60 +81,37 @@ export function ResumePage() {
               {/* Contact Info */}
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
+                  <Mail className="w-4 h-4 flex-shrink-0" />
                   <a href={`mailto:${personalInfo.email}`} className="hover:underline">
                     {personalInfo.email}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
+                  <MapPin className="w-4 h-4 flex-shrink-0" />
                   <span>{personalInfo.location}</span>
                 </div>
-              </div>
-
-              {/* Social Links */}
-              <div className="flex gap-3 mt-4">
-                {linkedinUrl && (
+                <div className="flex items-center gap-2">
+                  <Globe className="w-4 h-4 flex-shrink-0" />
                   <a
-                    href={linkedinUrl}
+                    href={portfolioUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg text-sm transition-colors"
+                    className="hover:underline"
                   >
-                    <Linkedin className="w-4 h-4" />
-                    <span className="hidden sm:inline">LinkedIn</span>
+                    {portfolioUrl.replace('https://', '')}
                   </a>
-                )}
-                {githubUrl && (
-                  <a
-                    href={githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-lg text-sm transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span className="hidden sm:inline">GitHub</span>
-                  </a>
-                )}
+                </div>
               </div>
             </div>
 
-            {/* Profile Photo + QR Code */}
-            <div className="flex flex-col items-center gap-3">
+            {/* Profile Photo */}
+            <div className="flex-shrink-0">
               <img
                 src={personalInfo.avatar}
                 alt={personalInfo.name}
-                className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
+                style={{ width: 128, height: 128 }}
+                className="rounded-full border-4 border-white shadow-lg object-cover aspect-square"
               />
-              {/* QR Code - Portfolio Website */}
-              <div className="bg-white p-2 rounded-lg">
-                <img
-                  src={`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(portfolioUrl)}`}
-                  alt="Portfolio QR Code"
-                  className="w-20 h-20"
-                />
-                <p className="text-xs text-gray-600 text-center mt-1">Scan for Portfolio</p>
-              </div>
             </div>
           </div>
         </div>
@@ -197,7 +170,7 @@ export function ResumePage() {
                   key={index}
                   className="flex items-center gap-2 px-3 py-2 bg-gray-50 rounded-lg border border-gray-200"
                 >
-                  <span className="text-lg">{skill.icon}</span>
+                  <span className="text-lg leading-none">{skill.icon}</span>
                   <span className="text-sm font-medium text-gray-700">{skill.label}</span>
                 </div>
               ))}
@@ -215,8 +188,8 @@ export function ResumePage() {
                 <h3 className="font-semibold text-gray-900 mb-3">Programming</h3>
                 <div className="space-y-2">
                   {techStack.languages.map((tech, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <span className="text-lg">{tech.icon}</span>
+                    <div key={index} className="flex items-center gap-2">
+                      <span className="text-lg leading-none">{tech.icon}</span>
                       <div>
                         <p className="text-sm font-medium text-gray-900">{tech.name}</p>
                         {tech.main && (
@@ -233,8 +206,8 @@ export function ResumePage() {
                 <h3 className="font-semibold text-gray-900 mb-3">Business Tools</h3>
                 <div className="space-y-2">
                   {techStack.business.map((tech, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <span className="text-lg">{tech.icon}</span>
+                    <div key={index} className="flex items-center gap-2">
+                      <span className="text-lg leading-none">{tech.icon}</span>
                       <p className="text-sm font-medium text-gray-900">{tech.name}</p>
                     </div>
                   ))}
@@ -246,8 +219,8 @@ export function ResumePage() {
                 <h3 className="font-semibold text-gray-900 mb-3">Analytics</h3>
                 <div className="space-y-2">
                   {techStack.analytics.map((tech, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <span className="text-lg">{tech.icon}</span>
+                    <div key={index} className="flex items-center gap-2">
+                      <span className="text-lg leading-none">{tech.icon}</span>
                       <p className="text-sm font-medium text-gray-900">{tech.name}</p>
                     </div>
                   ))}
@@ -261,9 +234,9 @@ export function ResumePage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-indigo-600">
               Education
             </h2>
-            <div className="flex items-start gap-3">
-              <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
-                <span className="text-2xl">🎓</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl leading-none">🎓</span>
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">{education.degree}</h3>
@@ -274,30 +247,6 @@ export function ResumePage() {
             </div>
           </section>
 
-          {/* Portfolio Link */}
-          <section className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-lg border border-indigo-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-1">View Full Portfolio</h3>
-                <p className="text-sm text-gray-600">Scan QR code or visit:</p>
-                <a
-                  href={portfolioUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-indigo-600 font-medium hover:underline"
-                >
-                  {portfolioUrl.replace('https://', '')}
-                </a>
-              </div>
-              <div className="hidden print:block">
-                <img
-                  src={`https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${encodeURIComponent(portfolioUrl)}`}
-                  alt="Portfolio QR Code"
-                  className="w-20 h-20"
-                />
-              </div>
-            </div>
-          </section>
         </div>
 
         {/* Footer */}
