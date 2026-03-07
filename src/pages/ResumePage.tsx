@@ -1,14 +1,44 @@
+import { useRef, useState } from "react";
 import { personalInfo, workHistory, skills, education, techStack, socialLinks } from "@/data/content";
-import { Mail, MapPin, Linkedin, Github, Download, Printer } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github, Download, Printer, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 export function ResumePage() {
+  const resumeRef = useRef<HTMLDivElement>(null);
+  const [exporting, setExporting] = useState(false);
+
   const handlePrint = () => {
     window.print();
   };
 
-  const handleDownload = () => {
-    window.print();
+  const handleDownloadPDF = async () => {
+    if (!resumeRef.current) return;
+    setExporting(true);
+    try {
+      const canvas = await html2canvas(resumeRef.current, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+        logging: false,
+      });
+
+      const imgWidth = 210; // A4 width in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: [imgWidth, imgHeight], // custom height = exact content height
+      });
+
+      const imgData = canvas.toDataURL("image/png");
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.save(`Resume_${personalInfo.name.replace(/ /g, "_")}.pdf`);
+    } finally {
+      setExporting(false);
+    }
   };
 
   // Get social media links
@@ -28,19 +58,23 @@ export function ResumePage() {
           className="gap-2"
         >
           <Printer className="w-4 h-4" />
-          Print
+          Print A4
         </Button>
         <Button
-          onClick={handleDownload}
-          className="gap-2 bg-indigo-600 hover:bg-indigo-700"
+          onClick={handleDownloadPDF}
+          disabled={exporting}
+          className="gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-70"
         >
-          <Download className="w-4 h-4" />
-          Download PDF
+          {exporting ? (
+            <><Loader2 className="w-4 h-4 animate-spin" />Generating...</>
+          ) : (
+            <><Download className="w-4 h-4" />Download PDF (1 Page)</>
+          )}
         </Button>
       </div>
 
       {/* Resume Container */}
-      <div className="max-w-4xl mx-auto bg-white shadow-lg print:shadow-none">
+      <div ref={resumeRef} className="max-w-4xl mx-auto bg-white shadow-lg print:shadow-none">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 print:bg-gradient-to-r print:from-gray-800 print:to-gray-900">
           <div className="flex items-start justify-between gap-6">
