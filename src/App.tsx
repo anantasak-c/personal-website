@@ -27,9 +27,9 @@ function PortfolioPage() {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<PortfolioPage />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/portfolio" element={<PortfolioPage />} />
       <Route path="/resume" element={<ResumePage />} />
-      <Route path="/landing" element={<LandingPage />} />
       <Route path="/blog" element={<BlogListPage />} />
       <Route path="/blog/:slug" element={<BlogPostPage />} />
     </Routes>

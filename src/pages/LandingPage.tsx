@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 /* ─── Typewriter Hook ─── */
 function useTypewriter(text: string, speed = 50, startDelay = 1200) {
@@ -49,41 +49,116 @@ const useCases = [
   },
 ];
 
-/* ─── Animated Infinity SVG ─── */
-function InfinitySVG() {
+/* ─── Particle Network Background (Canvas) ─── */
+interface Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  color: string;
+}
+
+function ParticleNetwork() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const animRef = useRef<number>(0);
+
+  const COLORS = ["#00f0ff", "#ff00ff", "#8b5cf6", "#00f0ff"];
+  const PARTICLE_COUNT = 70;
+  const CONNECT_DIST = 150;
+
+  const init = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles: Particle[] = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        size: Math.random() * 2 + 0.5,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      });
+    }
+    particlesRef.current = particles;
+  }, []);
+
+  useEffect(() => {
+    init();
+
+    const handleResize = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", handleResize);
+
+    const animate = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const particles = particlesRef.current;
+
+      // Update & draw particles
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECT_DIST) {
+            const opacity = (1 - dist / CONNECT_DIST) * 0.15;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      animRef.current = requestAnimationFrame(animate);
+    };
+
+    animRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animRef.current);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [init]);
+
   return (
-    <svg
-      className="landing-infinity-svg"
-      viewBox="0 0 200 100"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <filter id="neonGlow">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feFlood floodColor="#00f0ff" floodOpacity="0.7" result="color" />
-          <feComposite in="color" in2="blur" operator="in" result="shadow" />
-          <feMerge>
-            <feMergeNode in="shadow" />
-            <feMergeNode in="shadow" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-      <path
-        d="M50 50 C50 20, 10 20, 10 50 C10 80, 50 80, 50 50 C50 20, 90 20, 90 50 S150 80, 150 50 S190 20, 150 20 C130 20, 110 35, 100 50 C90 65, 70 80, 50 50"
-        stroke="url(#infinityGrad)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        filter="url(#neonGlow)"
-        className="landing-infinity-path"
-      />
-      <linearGradient id="infinityGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#00f0ff" />
-        <stop offset="50%" stopColor="#ff00ff" />
-        <stop offset="100%" stopColor="#8b5cf6" />
-      </linearGradient>
-    </svg>
+    <canvas
+      ref={canvasRef}
+      className="landing-particles-canvas"
+      aria-hidden="true"
+    />
   );
 }
 
@@ -96,19 +171,17 @@ function UseCaseCard({ title, description, href }: { title: string; description:
       rel="noopener noreferrer"
       className="landing-card group"
     >
-      {/* Terminal dots */}
-      <div className="flex items-center gap-1.5 mb-4">
-        <span className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
-        <span className="w-3 h-3 rounded-full bg-yellow-400 shadow-[0_0_6px_#facc15]" />
-        <span className="w-3 h-3 rounded-full bg-green-400 shadow-[0_0_6px_#4ade80]" />
-        <span className="ml-auto text-xs text-cyan-400/50 font-mono">&#47;&#47; {title.toLowerCase()}</span>
+      {/* macOS title bar with neon dots */}
+      <div className="landing-card-bar">
+        <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 shadow-[0_0_6px_#facc15]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-green-400 shadow-[0_0_6px_#4ade80]" />
       </div>
 
-      <h3 className="landing-card-title">{title}</h3>
-      <p className="landing-card-desc">{description}</p>
-
-      <div className="mt-auto pt-4 flex items-center gap-2 text-xs font-mono text-cyan-400/70 group-hover:text-cyan-300 transition-colors">
-        <span className="landing-blink">▶</span> EXPLORE
+      {/* Card body */}
+      <div className="landing-card-body">
+        <h3 className="landing-card-title">{title}</h3>
+        <p className="landing-card-desc">{description}</p>
       </div>
     </a>
   );
@@ -120,7 +193,6 @@ export function LandingPage() {
   const { displayed, done } = useTypewriter(subtitleText, 35, 800);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Scanline + grid animation on mount
   useEffect(() => {
     const el = containerRef.current;
     if (el) el.classList.add("landing-loaded");
@@ -128,19 +200,20 @@ export function LandingPage() {
 
   return (
     <div ref={containerRef} className="landing-root">
+      {/* Particle network background */}
+      <ParticleNetwork />
+
       {/* Scanline overlay */}
       <div className="landing-scanlines" aria-hidden="true" />
 
       {/* Grid background */}
       <div className="landing-grid-bg" aria-hidden="true" />
 
+      {/* Hex pattern overlay */}
+      <div className="landing-hex-overlay" aria-hidden="true" />
+
       {/* ─── Header / Logo ─── */}
       <header className="landing-header">
-        {/* Infinity SVG behind title */}
-        <div className="landing-infinity-wrap">
-          <InfinitySVG />
-        </div>
-
         {/* Main title */}
         <h1 className="landing-title" data-text="ANAN">
           ANAN
@@ -162,7 +235,7 @@ export function LandingPage() {
 
       {/* ─── Footer ─── */}
       <footer className="landing-footer">
-        <a href="/" className="landing-portfolio-link group">
+        <a href="/portfolio" className="landing-portfolio-link group">
           <span className="landing-arrow">▶</span>
           <span>VIEW PORTFOLIO</span>
         </a>
