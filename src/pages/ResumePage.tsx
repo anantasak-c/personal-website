@@ -226,9 +226,6 @@ export function ResumePage() {
                       <span className="text-lg leading-none">{tech.icon}</span>
                       <div>
                         <p className="text-sm font-medium text-gray-900">{tech.name}</p>
-                        {tech.main && (
-                          <span className="text-xs text-indigo-600 font-medium">Main</span>
-                        )}
                       </div>
                     </div>
                   ))}

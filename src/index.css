@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -326,4 +327,328 @@
   a[href]:after {
     content: none !important;
   }
+}
+
+/* ═══════════════════════════════════════════════
+   CYBERPUNK LANDING PAGE STYLES
+   ═══════════════════════════════════════════════ */
+
+/* ── Root Container ── */
+.landing-root {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0014 0%, #0d001a 40%, #120025 100%);
+  color: #e0e0e0;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem;
+}
+
+/* ── Scanline Overlay ── */
+.landing-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 240, 255, 0.015) 2px,
+    rgba(0, 240, 255, 0.015) 4px
+  );
+}
+
+/* ── Grid Background ── */
+.landing-grid-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: landing-grid-drift 20s linear infinite;
+}
+
+@keyframes landing-grid-drift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+
+/* ── Header ── */
+.landing-header {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+/* ── Infinity SVG Wrapper ── */
+.landing-infinity-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 420px;
+  height: 210px;
+  z-index: 0;
+  opacity: 0.6;
+  animation: landing-pulse 4s ease-in-out infinite;
+}
+
+.landing-infinity-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.landing-infinity-path {
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: landing-draw-infinity 4s ease-in-out forwards, landing-glow-cycle 6s ease-in-out 4s infinite;
+}
+
+@keyframes landing-draw-infinity {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes landing-glow-cycle {
+  0%, 100% { filter: url(#neonGlow) drop-shadow(0 0 8px #00f0ff); }
+  50% { filter: url(#neonGlow) drop-shadow(0 0 20px #ff00ff); }
+}
+
+@keyframes landing-pulse {
+  0%, 100% { transform: translate(-50%, -60%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -60%) scale(1.05); opacity: 0.8; }
+}
+
+/* ── Main Title — Glitch Pixel Font ── */
+.landing-title {
+  position: relative;
+  z-index: 2;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: #fff;
+  text-shadow:
+    0 0 10px #00f0ff,
+    0 0 30px #00f0ff,
+    0 0 60px rgba(0, 240, 255, 0.4),
+    0 0 100px rgba(139, 92, 246, 0.2);
+  letter-spacing: 0.15em;
+  animation: landing-glitch 5s infinite;
+}
+
+/* Glitch pseudo-elements */
+.landing-title::before,
+.landing-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.landing-title::before {
+  color: #ff00ff;
+  animation: landing-glitch-shift-1 3s infinite;
+  clip-path: inset(0 0 65% 0);
+}
+
+.landing-title::after {
+  color: #00f0ff;
+  animation: landing-glitch-shift-2 2.5s infinite;
+  clip-path: inset(60% 0 0 0);
+}
+
+@keyframes landing-glitch {
+  0%, 93%, 100% { transform: translate(0); }
+  94% { transform: translate(-2px, 1px); }
+  95% { transform: translate(2px, -1px); }
+  96% { transform: translate(-1px, -2px); }
+}
+
+@keyframes landing-glitch-shift-1 {
+  0%, 90%, 100% { transform: translate(0); opacity: 0; }
+  91% { transform: translate(3px, -2px); opacity: 0.8; }
+  92% { transform: translate(-2px, 1px); opacity: 0.6; }
+  93% { transform: translate(0); opacity: 0; }
+}
+
+@keyframes landing-glitch-shift-2 {
+  0%, 85%, 100% { transform: translate(0); opacity: 0; }
+  86% { transform: translate(-3px, 2px); opacity: 0.8; }
+  88% { transform: translate(2px, -1px); opacity: 0.7; }
+  89% { transform: translate(0); opacity: 0; }
+}
+
+/* ── Subtitle / Typewriter ── */
+.landing-subtitle {
+  position: relative;
+  z-index: 2;
+  margin-top: 1.5rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(0.65rem, 1.5vw, 0.9rem);
+  color: #00f0ff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  min-height: 3em;
+}
+
+.landing-cursor {
+  color: #ff00ff;
+  font-weight: bold;
+}
+
+.landing-blink {
+  animation: landing-blink-anim 1s step-end infinite;
+}
+
+@keyframes landing-blink-anim {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ── Cards Section ── */
+.landing-cards-section {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1100px;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+  .landing-cards-section {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
+
+/* ── Single Card ── */
+.landing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 0, 30, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+/* Corner accent */
+.landing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, transparent 60%);
+  border-radius: 12px 0 0 0;
+  pointer-events: none;
+}
+
+/* Bottom glow line */
+.landing-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ff00ff, #00f0ff, transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.landing-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow:
+    0 0 15px rgba(0, 240, 255, 0.15),
+    0 0 40px rgba(0, 240, 255, 0.08),
+    0 8px 30px rgba(139, 92, 246, 0.1);
+}
+
+.landing-card:hover::after {
+  opacity: 1;
+}
+
+.landing-card-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.85rem;
+  color: #ff00ff;
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.landing-card-desc {
+  font-size: 0.85rem;
+  color: rgba(200, 200, 220, 0.8);
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+.landing-footer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1100px;
+  padding-bottom: 2rem;
+}
+
+.landing-portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  color: #00f0ff;
+  text-decoration: none;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6), 0 0 30px rgba(0, 240, 255, 0.3);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.landing-portfolio-link:hover {
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.9), 0 0 40px rgba(0, 240, 255, 0.5);
+}
+
+.landing-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.landing-portfolio-link:hover .landing-arrow {
+  transform: translateX(6px);
+}
+
+/* ── Fade-in on load ── */
+.landing-root {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.landing-root.landing-loaded {
+  opacity: 1;
 }
