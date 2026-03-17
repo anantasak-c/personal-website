@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Check, Copy, ArrowLeft, AlertTriangle, Zap, Terminal, Rocket } from "lucide-react";
+import { Check, Copy, ArrowLeft, AlertTriangle, Zap, Terminal } from "lucide-react";
+import { ScrollVideoSection } from "@/components/ScrollVideoSection";
 
 const MAGIC_PROMPT = `You are my personal system administrator and DevOps assistant. Your job is to install and run OpenClaw on my computer automatically with zero manual steps from me.
 
@@ -197,70 +198,12 @@ export function OpenClawGuidePage() {
           </button>
         </section>
 
-        {/* ── Section 4: How to Use ── */}
-        <section>
-          <div className="flex items-center gap-2 mb-2">
-            <Rocket className="w-5 h-5 text-blue-600" />
-            <h2 className="text-xl font-bold text-gray-900">วิธีรันเวทมนตร์ (3 Step)</h2>
-          </div>
-          <p className="text-gray-500 text-sm mb-6">ทำตามนี้ได้เลย ไม่ต้องคิดเยอะครับ</p>
+      </div>
 
-          <div className="space-y-5">
-            {/* Step 1 */}
-            <div className="flex gap-4 p-5 rounded-2xl border border-gray-100 bg-white hover:border-blue-200 hover:shadow-sm transition-all">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">1</div>
-              <div className="flex-1">
-                <h3 className="font-bold text-gray-900 mb-1">Paste — วาง Prompt ลงใน Windsurf</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-3">
-                  เปิด Windsurf → กด <kbd className="bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded text-xs font-mono">Ctrl+L</kbd> เพื่อเปิดแชท Cascade →
-                  วาง Prompt ที่ Copy ไว้ → กด <kbd className="bg-gray-100 border border-gray-200 px-1.5 py-0.5 rounded text-xs font-mono">Enter</kbd>
-                </p>
-                {/* GIF Placeholder */}
-                <div className="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-100 to-blue-50 border-2 border-dashed border-blue-200 flex flex-col items-center justify-center gap-2">
-                  <span className="text-3xl">🎬</span>
-                  <span className="text-sm text-blue-400 font-medium">GIF: วาง Prompt ลงใน Windsurf</span>
-                  <span className="text-xs text-gray-400">Coming soon</span>
-                </div>
-              </div>
-            </div>
+      {/* ── Section 4: How to Use (Scroll Animation) ── */}
+      <ScrollVideoSection />
 
-            {/* Step 2 */}
-            <div className="flex gap-4 p-5 rounded-2xl border border-gray-100 bg-white hover:border-blue-200 hover:shadow-sm transition-all">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">2</div>
-              <div className="flex-1">
-                <h3 className="font-bold text-gray-900 mb-1">Sit Back &amp; Accept — นั่งจิบกาแฟรอ</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-3">
-                  AI จะเริ่มทำงานอัตโนมัติ! เพียงแต่ต้องคอย<strong className="text-gray-700">กดปุ่ม "Accept" หรือ "Run Command"</strong> เมื่อ AI ขออนุญาต
-                  เพื่อความปลอดภัยของเครื่องคุณเอง
-                </p>
-                {/* GIF Placeholder */}
-                <div className="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-100 to-blue-50 border-2 border-dashed border-blue-200 flex flex-col items-center justify-center gap-2">
-                  <span className="text-3xl">🎬</span>
-                  <span className="text-sm text-blue-400 font-medium">GIF: AI ทำงานและกด Accept</span>
-                  <span className="text-xs text-gray-400">Coming soon</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="flex gap-4 p-5 rounded-2xl border border-gray-100 bg-white hover:border-green-200 hover:shadow-sm transition-all">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-bold text-lg">3</div>
-              <div className="flex-1">
-                <h3 className="font-bold text-gray-900 mb-1">Done! — OpenClaw พร้อมใช้งาน 🎉</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-3">
-                  รอจน AI แจ้งลิงก์ <code className="bg-green-50 text-green-700 px-1.5 py-0.5 rounded font-mono text-xs border border-green-200">localhost:3000</code> แล้วคลิกเปิดได้เลย
-                  OpenClaw พร้อมใช้งานทันที!
-                </p>
-                {/* GIF Placeholder */}
-                <div className="w-full aspect-video rounded-xl bg-gradient-to-br from-slate-100 to-green-50 border-2 border-dashed border-green-200 flex flex-col items-center justify-center gap-2">
-                  <span className="text-3xl">🎬</span>
-                  <span className="text-sm text-green-500 font-medium">GIF: หน้า OpenClaw เปิดขึ้นมา</span>
-                  <span className="text-xs text-gray-400">Coming soon</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div className="max-w-3xl mx-auto px-6 space-y-10 py-20">
 
         {/* ── Section 5: AI Error Solver ── */}
         <section className="rounded-2xl border border-orange-100 bg-orange-50 p-8">
