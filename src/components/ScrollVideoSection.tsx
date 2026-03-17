@@ -32,10 +32,9 @@ export function ScrollVideoSection() {
   });
 
   return (
-    <section ref={containerRef} className="relative h-[300vh]">
+    <section ref={containerRef} className="relative h-[400vh] bg-black">
       {/* Sticky container for the video */}
-      <div className="sticky top-16 flex items-center justify-center py-8">
-        <div className="relative w-full max-w-3xl mx-6 rounded-2xl overflow-hidden shadow-2xl bg-black aspect-video">
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         <video
           ref={videoRef}
           src="/videos/scroll-guide.mp4.mp4"
@@ -62,11 +61,10 @@ export function ScrollVideoSection() {
         {/* Scroll Indicator */}
         <motion.div 
           style={{ opacity: scrollIndicatorOpacity }}
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-sm animate-bounce"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 text-sm animate-bounce"
         >
           Scroll to play
         </motion.div>
-        </div>
       </div>
     </section>
   );
