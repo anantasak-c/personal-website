@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
 import { ArrowLeft, Clock, Tag, Loader2 } from "lucide-react";
 import { personalInfo } from "@/data/content";
-import { sanityClient, ALL_POSTS_QUERY } from "@/lib/sanity";
+import { sanityClient, ALL_POSTS_QUERY, urlFor } from "@/lib/sanity";
 import type { SanityPost } from "@/types/blog";
 
 export function BlogListPage() {
@@ -63,8 +63,19 @@ export function BlogListPage() {
               <Link
                 key={post._id}
                 to={`/blog/${post.slug}`}
-                className="group block border border-gray-100 rounded-xl p-6 hover:border-gray-300 hover:shadow-sm transition-all"
+                className="group block overflow-hidden border border-gray-100 rounded-2xl bg-white hover:border-gray-300 hover:shadow-md transition-all"
               >
+                {post.coverImage && (
+                  <div className="aspect-[16/9] overflow-hidden bg-gray-100">
+                    <img
+                      src={urlFor(post.coverImage).width(1200).height(675).fit("crop").url()}
+                      alt={post.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                )}
+
+                <div className="p-6">
                 {/* Tags */}
                 {post.tags?.length > 0 && (
                   <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -105,6 +116,7 @@ export function BlogListPage() {
                       {post.readTime}
                     </span>
                   )}
+                </div>
                 </div>
               </Link>
             ))}

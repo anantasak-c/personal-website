@@ -92,6 +92,16 @@ export function BlogPostPage() {
 
       {/* Article */}
       <article className="max-w-3xl mx-auto px-6 py-16">
+        {post.coverImage && (
+          <div className="mb-8 overflow-hidden rounded-3xl border border-gray-100 bg-gray-100 shadow-sm">
+            <img
+              src={urlFor(post.coverImage).width(1600).height(900).fit("crop").url()}
+              alt={post.title}
+              className="h-full w-full max-h-[520px] object-cover"
+            />
+          </div>
+        )}
+
         {/* Tags */}
         {post.tags?.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-4">

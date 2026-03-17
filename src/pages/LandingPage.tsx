@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import { Link } from "react-router-dom";
 
 /* ─── Typewriter Hook ─── */
 function useTypewriter(text: string, speed = 50, startDelay = 1200) {
@@ -31,10 +32,10 @@ function useTypewriter(text: string, speed = 50, startDelay = 1200) {
 const useCases = [
   {
     id: 1,
-    title: "USE CASE 1",
-    description: "Automation & Workflow — Building intelligent n8n pipelines, personal finance bots, and AI-powered assistants.",
-    href: "#",
-    icon: "⚡",
+    title: "OPENCLAW INSTALL",
+    description: "OpenClaw 1-Click Installation via AI — รัน OpenClaw Agent ในเครื่องคุณแบบอัตโนมัติ ไม่ต้องปวดหัวกับ Terminal เลยสักบรรทัด",
+    href: "/openclaw-guide",
+    icon: "🪄",
   },
   {
     id: 2,
@@ -277,17 +278,11 @@ function UseCaseCard({
   icon: string;
   index: number;
 }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="landing-card group"
-      style={{ animationDelay: `${0.8 + index * 0.2}s` }}
-    >
+  const isExternal = href.startsWith("http");
+  const content = (
+    <>
       {/* Animated neon border overlay */}
       <div className="landing-card-glow" aria-hidden="true" />
-
       {/* Terminal title bar */}
       <div className="landing-card-bar">
         <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
@@ -297,7 +292,6 @@ function UseCaseCard({
           {title}
         </span>
       </div>
-
       {/* Card body */}
       <div className="landing-card-body">
         <div className="landing-card-icon">{icon}</div>
@@ -308,7 +302,31 @@ function UseCaseCard({
           <span>EXPLORE</span>
         </div>
       </div>
+    </>
+  );
+
+  if (isExternal) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="landing-card group"
+      style={{ animationDelay: `${0.8 + index * 0.2}s` }}
+    >
+      {content}
     </a>
+  );
+  }
+
+  return (
+    <Link
+      to={href}
+      className="landing-card group"
+      style={{ animationDelay: `${0.8 + index * 0.2}s` }}
+    >
+      {content}
+    </Link>
   );
 }
 

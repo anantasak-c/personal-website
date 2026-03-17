@@ -45,5 +45,6 @@ export const LATEST_POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc)[
   description,
   tags,
   publishedAt,
-  readTime
+  readTime,
+  coverImage
 }`;
