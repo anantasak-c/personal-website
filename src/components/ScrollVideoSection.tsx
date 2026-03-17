@@ -18,6 +18,8 @@ export function ScrollVideoSection() {
     restDelta: 0.001,
   });
 
+  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+
   // Map scroll progress to video time
   useMotionValueEvent(smoothProgress, "change", (latest) => {
     if (videoRef.current && videoRef.current.duration) {
@@ -35,7 +37,7 @@ export function ScrollVideoSection() {
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         <video
           ref={videoRef}
-          src="/videos/scroll-guide.mp4"
+          src="/videos/scroll-guide.mp4.mp4"
           className="w-full h-full object-cover"
           muted
           playsInline
@@ -58,7 +60,7 @@ export function ScrollVideoSection() {
 
         {/* Scroll Indicator */}
         <motion.div 
-          style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
+          style={{ opacity: scrollIndicatorOpacity }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 text-sm animate-bounce"
         >
           Scroll to play
