@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Copy, ArrowLeft, AlertTriangle, Zap, Terminal } from "lucide-react";
-import { ScrollVideoSection } from "@/components/ScrollVideoSection";
 
 const MAGIC_PROMPT = `You are my personal system administrator and DevOps assistant. Your job is to install and run OpenClaw on my computer automatically with zero manual steps from me.
 
@@ -200,10 +199,44 @@ export function OpenClawGuidePage() {
 
       </div>
 
-      {/* ── Section 4: How to Use (Scroll Animation) ── */}
-      <ScrollVideoSection />
+      <div className="max-w-3xl mx-auto px-6 space-y-10 pb-20">
+        
+        {/* ── Section 4: How to Use ── */}
+        <section>
+          <div className="flex items-center gap-2 mb-6">
+            <span className="text-xl">🚀</span>
+            <h2 className="text-xl font-bold text-gray-900">วิธีใช้งาน (3 ขั้นตอนง่ายๆ)</h2>
+          </div>
 
-      <div className="max-w-3xl mx-auto px-6 space-y-10 py-20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {/* Step 1 */}
+            <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center font-bold text-lg mb-4">1</div>
+              <h3 className="font-bold text-gray-900 mb-2">Paste Prompt</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Copy the magic prompt above and paste it into Windsurf AI Chat.
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center font-bold text-lg mb-4">2</div>
+              <h3 className="font-bold text-gray-900 mb-2">Accept & Run</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                Click "Accept" or "Run" to let AI execute the Docker commands automatically.
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-10 h-10 bg-green-50 text-green-600 rounded-lg flex items-center justify-center font-bold text-lg mb-4">3</div>
+              <h3 className="font-bold text-gray-900 mb-2">Done!</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                When it says "Done", click the localhost link to open OpenClaw.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* ── Section 5: AI Error Solver ── */}
         <section className="rounded-2xl border border-orange-100 bg-orange-50 p-8">
