@@ -129,11 +129,15 @@ export function OpenClawGuidePage() {
             และทำงานอัตโนมัติต่างๆ ได้ โดย<strong className="text-gray-800">ข้อมูลทั้งหมดอยู่ในเครื่องคุณ ไม่ส่งไปไหน</strong>
           </p>
 
-          {/* GIF placeholder */}
-          <div className="rounded-xl bg-gray-100 border-2 border-dashed border-gray-300 h-48 flex flex-col items-center justify-center text-gray-400">
-            <Monitor className="w-10 h-10 mb-2" />
-            <p className="text-sm font-medium">ตัวอย่างหน้าจอ OpenClaw</p>
-            <p className="text-xs">(รอใส่รูปภาพ / GIF)</p>
+          <div className="rounded-xl overflow-hidden border border-gray-200 bg-black shadow-sm">
+            <video
+              className="w-full h-auto"
+              src="/videos/ตัวอย่างหน้าจอ OpenClaw.mp4"
+              controls
+              muted
+              playsInline
+              preload="metadata"
+            />
           </div>
         </section>
 
@@ -216,11 +220,12 @@ export function OpenClawGuidePage() {
                   </ol>
                 </div>
 
-                {/* GIF placeholder */}
-                <div className="rounded-xl bg-gray-100 border-2 border-dashed border-gray-300 h-48 flex flex-col items-center justify-center text-gray-400">
-                  <Download className="w-10 h-10 mb-2" />
-                  <p className="text-sm font-medium">GIF: วิธีติดตั้ง Windsurf</p>
-                  <p className="text-xs">(รอใส่ GIF / วิดีโอ)</p>
+                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-sm">
+                  <img
+                    src="/videos/GIF วิธีติดตั้ง Windsurf.gif"
+                    alt="ตัวอย่างวิธีติดตั้ง Windsurf"
+                    className="w-full h-auto"
+                  />
                 </div>
               </div>
             </div>
@@ -302,11 +307,12 @@ export function OpenClawGuidePage() {
                   </p>
                 </div>
 
-                {/* GIF placeholder */}
-                <div className="rounded-xl bg-gray-100 border-2 border-dashed border-gray-300 h-48 flex flex-col items-center justify-center text-gray-400">
-                  <Copy className="w-10 h-10 mb-2" />
-                  <p className="text-sm font-medium">GIF: วาง Prompt แล้วกด Accept</p>
-                  <p className="text-xs">(รอใส่ GIF / วิดีโอ)</p>
+                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-sm">
+                  <img
+                    src="/videos/GIF วาง Prompt แล้วกด Accept.gif"
+                    alt="ตัวอย่างการวาง Prompt แล้วกด Accept ใน Windsurf"
+                    className="w-full h-auto"
+                  />
                 </div>
               </div>
             </div>
@@ -340,11 +346,12 @@ export function OpenClawGuidePage() {
                   <p className="text-sm text-green-600">ตอนนี้คุณมี AI Agent ส่วนตัวทำงานอยู่ในเครื่องแล้วครับ</p>
                 </div>
 
-                {/* GIF placeholder */}
-                <div className="rounded-xl bg-gray-100 border-2 border-dashed border-gray-300 h-48 flex flex-col items-center justify-center text-gray-400">
-                  <Monitor className="w-10 h-10 mb-2" />
-                  <p className="text-sm font-medium">GIF: เปิด Browser แล้วเจอ OpenClaw</p>
-                  <p className="text-xs">(รอใส่ GIF / วิดีโอ)</p>
+                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-sm">
+                  <img
+                    src="/videos/GIF เปิด Browser แล้วเจอ OpenClaw.gif"
+                    alt="ตัวอย่างการเปิด Browser แล้วเจอ OpenClaw"
+                    className="w-full h-auto"
+                  />
                 </div>
               </div>
             </div>
