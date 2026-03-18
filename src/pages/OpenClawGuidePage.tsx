@@ -195,7 +195,7 @@ export function OpenClawGuidePage() {
                 </p>
 
                 <a
-                  href="https://windsurf.com/refer-a-friend"
+                  href="https://windsurf.com/refer?referral_code=3c1xf7tl8fw46e0p"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg shadow-blue-200 transition-all duration-200 hover:shadow-xl hover:shadow-blue-300 hover:-translate-y-0.5"
@@ -237,13 +237,13 @@ export function OpenClawGuidePage() {
               <div className="flex items-center gap-4 bg-blue-600 text-white px-6 py-4">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0">2</div>
                 <div>
-                  <h3 className="text-lg font-bold">ก๊อปปี้ "คำสั่งวิเศษ" ด้านล่างนี้</h3>
+                  <h3 className="text-lg font-bold">ก๊อปปี้ "Prompt" ด้านล่างนี้</h3>
                   <p className="text-blue-100 text-sm">ใช้เวลา 5 วินาที</p>
                 </div>
               </div>
               <div className="p-6 space-y-5">
                 <p className="text-base text-gray-600 leading-relaxed">
-                  ข้อความด้านล่างนี้คือ <strong className="text-gray-800">"คำสั่งวิเศษ"</strong> ที่จะบอก AI ว่าต้องทำอะไรบ้าง
+                  ข้อความด้านล่างนี้คือ <strong className="text-gray-800">"Prompt"</strong> ที่จะบอก AI ว่าต้องทำอะไรบ้าง
                   คุณ<strong className="text-gray-800">ไม่ต้องอ่านหรือแก้ไข</strong>อะไรเลย แค่กดปุ่ม "คัดลอก" ด้านล่าง
                 </p>
 
@@ -356,7 +356,7 @@ export function OpenClawGuidePage() {
                     className="w-full h-auto"
                   />
                 </div>
-                <p className="text-xs text-center text-gray-400 mt-2">หน้าตา OpenClaw เมื่อติดตั้งสำเร็จ</p>
+                <p className="text-xs text-center text-gray-400 mt-2">วิธีแก้ปัญหา Error ต่างๆ</p>
               </div>
             </div>
 
