@@ -129,16 +129,17 @@ export function OpenClawGuidePage() {
             และทำงานอัตโนมัติต่างๆ ได้ โดย<strong className="text-gray-800">ข้อมูลทั้งหมดอยู่ในเครื่องคุณ ไม่ส่งไปไหน</strong>
           </p>
 
-          <div className="rounded-xl overflow-hidden border border-gray-200 bg-black shadow-sm">
+          <div className="rounded-xl overflow-hidden border border-gray-200 bg-black shadow-lg">
             <video
               className="w-full h-auto"
-              src="/videos/ตัวอย่างหน้าจอ OpenClaw.mp4"
+              src="/videos/video-openclaw-preview.mp4"
               controls
               muted
               playsInline
               preload="metadata"
             />
           </div>
+          <p className="text-xs text-center text-gray-400 mt-2">ตัวอย่างการทำงานของ OpenClaw บนเครื่องจริง</p>
         </section>
 
         {/* ── สิ่งที่ต้องมี ── */}
@@ -220,13 +221,14 @@ export function OpenClawGuidePage() {
                   </ol>
                 </div>
 
-                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-sm">
+                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-lg">
                   <img
-                    src="/videos/GIF วิธีติดตั้ง Windsurf.gif"
+                    src="/videos/gif-install-windsurf.gif"
                     alt="ตัวอย่างวิธีติดตั้ง Windsurf"
                     className="w-full h-auto"
                   />
                 </div>
+                <p className="text-xs text-center text-gray-400 mt-2">ขั้นตอนการติดตั้ง Windsurf</p>
               </div>
             </div>
 
@@ -307,13 +309,14 @@ export function OpenClawGuidePage() {
                   </p>
                 </div>
 
-                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-sm">
+                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-lg">
                   <img
-                    src="/videos/GIF วาง Prompt แล้วกด Accept.gif"
+                    src="/videos/gif-paste-prompt.gif"
                     alt="ตัวอย่างการวาง Prompt แล้วกด Accept ใน Windsurf"
                     className="w-full h-auto"
                   />
                 </div>
+                <p className="text-xs text-center text-gray-400 mt-2">วาง Prompt ในช่องแชทแล้วกด Enter</p>
               </div>
             </div>
 
@@ -346,13 +349,14 @@ export function OpenClawGuidePage() {
                   <p className="text-sm text-green-600">ตอนนี้คุณมี AI Agent ส่วนตัวทำงานอยู่ในเครื่องแล้วครับ</p>
                 </div>
 
-                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-sm">
+                <div className="rounded-xl overflow-hidden border border-gray-200 bg-gray-50 shadow-lg">
                   <img
-                    src="/videos/GIF เปิด Browser แล้วเจอ OpenClaw.gif"
+                    src="/videos/gif-open-browser.gif"
                     alt="ตัวอย่างการเปิด Browser แล้วเจอ OpenClaw"
                     className="w-full h-auto"
                   />
                 </div>
+                <p className="text-xs text-center text-gray-400 mt-2">หน้าตา OpenClaw เมื่อติดตั้งสำเร็จ</p>
               </div>
             </div>
 
