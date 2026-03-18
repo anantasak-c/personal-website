@@ -130,13 +130,10 @@ export function OpenClawGuidePage() {
           </p>
 
           <div className="rounded-xl overflow-hidden border border-gray-200 bg-black shadow-lg">
-            <video
+            <img
               className="w-full h-auto"
-              src="/videos/video-openclaw-preview.mp4"
-              controls
-              muted
-              playsInline
-              preload="metadata"
+              src="/videos/video-openclaw-preview (new).gif"
+              alt="ตัวอย่างการใช้งาน OpenClaw บนเครื่องจริง"
             />
           </div>
           <p className="text-xs text-center text-gray-400 mt-2">ตัวอย่างการทำงานของ OpenClaw บนเครื่องจริง</p>
