@@ -47,11 +47,21 @@ export function BlogPostPage() {
   });
 
   useEffect(() => {
-    if (!slug) return;
+    console.log("BlogPostPage slug:", slug);
+    if (!slug) {
+      console.warn("No slug provided");
+      return;
+    }
     sanityClient
       .fetch<SanityPost>(POST_BY_SLUG_QUERY, { slug })
-      .then((data) => setPost(data ?? null))
-      .catch(() => setPost(null))
+      .then((data) => {
+        console.log("Sanity query result:", data);
+        setPost(data ?? null);
+      })
+      .catch((error) => {
+        console.error("Error fetching post:", error);
+        setPost(null);
+      })
       .finally(() => setLoading(false));
   }, [slug]);
 

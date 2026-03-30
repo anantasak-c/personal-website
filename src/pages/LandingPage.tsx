@@ -39,16 +39,16 @@ const useCases = [
   },
   {
     id: 2,
-    title: "USE CASE 2",
-    description: "Data & Analytics — Transforming raw data into actionable insights with Python, SQL, Tableau, and Looker.",
-    href: "#",
+    title: "Show Case",
+    description: "A curated feed of selected product demos, automation flows, and visual prototypes presented in a clean white reading experience.",
+    href: "/showcase",
     icon: "◈",
   },
   {
     id: 3,
-    title: "USE CASE 3",
-    description: "Web & Creative Dev — Crafting modern web experiences with React, Sanity CMS, and cutting-edge design.",
-    href: "#",
+    title: "My Blog",
+    description: "Articles, notes, and insights on AI, business, technology, and the things I am learning along the way.",
+    href: "/blog",
     icon: "⬡",
   },
 ];
@@ -333,8 +333,8 @@ function UseCaseCard({
 /* ─── Main Landing Page ─── */
 export function LandingPage() {
   const subtitleText =
-    "| ANAN /A-NAN/ > (N.) THAI ORIGIN, MEANING INFINITY. DISCOVER MY ENDLESS, TECH-DRIVEN USE CASES.";
-  const { displayed, done } = useTypewriter(subtitleText, 35, 800);
+    "My name is Anantasak :ANAN /A-NAN/ > (N.) THAI ORIGIN, MEANING INFINITY. DISCOVER MY ENDLESS, TECH-DRIVEN USE CASES.";
+  const { displayed, done } = useTypewriter(subtitleText, 45, 800);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

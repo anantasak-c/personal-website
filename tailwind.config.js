@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './บ้านรวมทะเล/src/**/*.{js,jsx}'],
   theme: {
     extend: {
       colors: {
@@ -29,6 +29,11 @@ module.exports = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          200: "#a5f3fc",
+          300: "#67e8f9",
+          400: "#22d3ee",
+          500: "#06b6d4",
+          600: "#0891b2",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -58,6 +63,7 @@ module.exports = {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        glow: "0 0 60px rgba(34, 211, 238, 0.18)",
       },
       keyframes: {
         "accordion-down": {

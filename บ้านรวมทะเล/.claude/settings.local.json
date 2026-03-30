@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node update_carousels.js)",
+      "Bash(node -e \":*)"
+    ]
+  }
+}

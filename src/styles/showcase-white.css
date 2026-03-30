@@ -1,0 +1,100 @@
+/* White-theme overrides for the embedded ChatBot ShowCase app */
+.showcase-white {
+  background: white !important;
+  color: #1f2937 !important;
+}
+
+/* ── Root backgrounds ── */
+.showcase-white .bg-slate-950 { background: #ffffff !important; }
+.showcase-white .bg-slate-900\/70 { background: rgba(255,255,255,0.9) !important; }
+.showcase-white .bg-slate-900\/80 { background: rgba(248,250,252,0.9) !important; }
+.showcase-white .bg-slate-900\/60 { background: #f8fafc !important; }
+.showcase-white .bg-slate-950\/60 { background: #f1f5f9 !important; }
+.showcase-white .bg-slate-950\/70 { background: #f8fafc !important; }
+.showcase-white .bg-slate-950\/90 { background: #f8fafc !important; }
+.showcase-white .bg-slate-950\/95 { background: #ffffff !important; }
+
+/* ── Glass panels ── */
+.showcase-white .bg-white\/\[0\.03\],
+.showcase-white .bg-white\/\[0\.04\] { background: #f8fafc !important; }
+.showcase-white .bg-white\/5 { background: rgba(0,0,0,0.03) !important; }
+.showcase-white .bg-white\/10 { background: rgba(0,0,0,0.04) !important; }
+.showcase-white .bg-white\/20 { background: rgba(0,0,0,0.06) !important; }
+
+/* ── Borders ── */
+.showcase-white .border-white\/10 { border-color: #e2e8f0 !important; }
+.showcase-white .border-white\/8 { border-color: #e2e8f0 !important; }
+.showcase-white .border-white\/15 { border-color: #cbd5e1 !important; }
+
+/* ── Gradient overlays remove ── */
+.showcase-white > .pointer-events-none.fixed { display: none !important; }
+
+/* ── Text ── */
+.showcase-white .text-white { color: #111827 !important; }
+.showcase-white .text-slate-200 { color: #374151 !important; }
+.showcase-white .text-slate-300 { color: #4b5563 !important; }
+.showcase-white .text-slate-400 { color: #6b7280 !important; }
+.showcase-white .text-slate-500 { color: #9ca3af !important; }
+.showcase-white .text-accent-200 { color: #0e7490 !important; }
+.showcase-white .text-accent-300 { color: #0891b2 !important; }
+.showcase-white .text-accent-400 { color: #0284c7 !important; }
+
+/* ── Accent backgrounds ── */
+.showcase-white .bg-accent-500\/10 { background: rgba(14,165,233,0.08) !important; }
+.showcase-white .bg-accent-500\/15 { background: rgba(14,165,233,0.1) !important; }
+.showcase-white .bg-accent-500\/20 { background: rgba(14,165,233,0.12) !important; }
+.showcase-white .bg-accent-500 { background: #0284c7 !important; }
+.showcase-white .bg-accent-400 { background: #0ea5e9 !important; }
+
+/* ── Accent borders ── */
+.showcase-white .border-accent-400\/15 { border-color: rgba(14,165,233,0.2) !important; }
+.showcase-white .border-accent-400\/20 { border-color: rgba(14,165,233,0.25) !important; }
+.showcase-white .border-accent-400\/30 { border-color: rgba(14,165,233,0.3) !important; }
+
+/* ── Gradient CTA button keep readable ── */
+.showcase-white .bg-gradient-to-r.from-accent-400.to-sky-400 {
+  background: linear-gradient(to right, #0284c7, #0ea5e9) !important;
+  color: white !important;
+}
+.showcase-white .text-slate-950 { color: white !important; }
+
+/* ── Shadow glow tone down ── */
+.showcase-white .shadow-glow { box-shadow: 0 0 40px rgba(14,165,233,0.12) !important; }
+.showcase-white .shadow-2xl { box-shadow: 0 4px 24px rgba(0,0,0,0.06) !important; }
+.showcase-white .shadow-cyan-950\/40 { --tw-shadow-color: transparent !important; }
+.showcase-white .shadow-cyan-500\/20 { --tw-shadow-color: transparent !important; }
+
+/* ── Sheet inputs ── */
+.showcase-white input[type="number"] {
+  background: white !important;
+  color: #111827 !important;
+  border-color: #e2e8f0 !important;
+}
+.showcase-white input[type="number"]:focus {
+  border-color: #0284c7 !important;
+}
+
+/* ── Emerald badge ── */
+.showcase-white .text-emerald-300 { color: #059669 !important; }
+.showcase-white .text-emerald-400 { color: #059669 !important; }
+.showcase-white .bg-emerald-400\/10 { background: rgba(5,150,105,0.08) !important; }
+.showcase-white .border-emerald-400\/20 { border-color: rgba(5,150,105,0.2) !important; }
+
+/* ── Gradient left bar ── */
+.showcase-white .bg-gradient-to-b.from-accent-400.to-cyan-600 {
+  background: linear-gradient(to bottom, #0284c7, #0891b2) !important;
+}
+
+/* ── Language switcher active ── */
+.showcase-white button .bg-white.text-slate-950 {
+  background: #111827 !important;
+  color: white !important;
+}
+
+/* ── Platform cards keep their gradient but lighter ── */
+.showcase-white .from-blue-500\/20 { --tw-gradient-from: rgba(59,130,246,0.08) !important; }
+.showcase-white .from-pink-500\/20 { --tw-gradient-from: rgba(236,72,153,0.08) !important; }
+.showcase-white .from-sky-500\/20 { --tw-gradient-from: rgba(14,165,233,0.08) !important; }
+.showcase-white .from-emerald-500\/20 { --tw-gradient-from: rgba(16,185,129,0.08) !important; }
+
+/* ── Chat window stays as-is (already has its own theme colors) ── */
