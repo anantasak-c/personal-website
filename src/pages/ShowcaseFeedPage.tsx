@@ -32,7 +32,7 @@ export function ShowcaseFeedPage() {
         ctaTitle: "ต่อยอดธุรกิจของคุณด้วย AI",
         ctaDescription:
           "ลองเปิดดูรายละเอียดหรือกดเล่น live demo ได้เลย ถ้าคุณกำลังมองหาคนช่วยออกแบบ product flow, automation หรือ interactive demo สำหรับธุรกิจของคุณ สามารถติดต่อได้ที่นี่",
-        viewPortfolio: "▶VIEW PORTFOLIO",
+        viewPortfolio: "▶About ME",
       }
     : {
         seoDescription: "A portfolio feed of real business use cases, live demos, and product concepts by Anantasak Charoensuk.",
@@ -58,7 +58,7 @@ export function ShowcaseFeedPage() {
         ctaTitle: "Grow your business with AI",
         ctaDescription:
           "Explore the details or try the live demo. If you are looking for someone to design product flows, automation, or interactive demos for your business, you can reach out here.",
-        viewPortfolio: "▶VIEW PORTFOLIO",
+        viewPortfolio: "▶About ME",
       };
 
   useSEO({

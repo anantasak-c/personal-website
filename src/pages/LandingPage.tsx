@@ -407,7 +407,7 @@ export function LandingPage() {
         <div className="landing-footer-line" aria-hidden="true" />
         <a href="/portfolio" className="landing-portfolio-link group">
           <span className="landing-arrow">▶</span>
-          <span>VIEW PORTFOLIO</span>
+          <span>About ME</span>
         </a>
       </footer>
     </div>

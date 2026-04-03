@@ -137,9 +137,9 @@ export function HeroSection() {
             asChild
             className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white shadow-md shadow-indigo-200/50 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-300/50"
           >
-            <a href="/resume" className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <FileText className="w-4 h-4" />
-              View Resume
+              View Show Case
             </a>
           </Button>
         </motion.div>
