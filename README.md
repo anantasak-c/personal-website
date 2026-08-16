@@ -1,73 +1,93 @@
-# React + TypeScript + Vite
+# Anantasak Personal Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website for Anantasak Charoensuk, focused on project management, tech entrepreneurship, AI automation, blockchain, showcase demos, and writing.
 
-Currently, two official plugins are available:
+Production: https://anantasak.com/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## React Compiler
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Framer Motion
+- shadcn/Radix UI components
+- MDX blog support
+- Sanity client support
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Common scripts:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
+npm run lint
+npm run preview
 ```
+
+On Windows PowerShell, if `npm` is blocked by execution policy, use `npm.cmd`:
+
+```bash
+npm.cmd run build
+npm.cmd run lint
+```
+
+## Routes
+
+- `/` - terminal-style landing page
+- `/portfolio` - full portfolio page
+- `/resume` - resume page
+- `/blog` - blog list
+- `/blog/:slug` - blog post
+- `/openclaw-guide` - OpenClaw installation guide
+- `/showcase` - showcase feed
+- `/showcase/:slug` - showcase detail
+- `/showcase/chatbot-showcase/live` - AI commerce chatbot demo
+- `/showcase/syncsocial-demo/live` - SyncSocial demo dashboard
+
+## Project Structure
+
+```text
+src/
+  components/        Shared components and shadcn UI primitives
+  components/showcase2/
+                     SyncSocial demo components
+  data/              Portfolio and showcase content
+  i18n/              Thai/English translations
+  pages/             Route-level pages
+  sections/          Portfolio page sections
+  styles/            Showcase-specific styles
+public/
+  images/            Public image assets
+  videos/            OpenClaw guide GIF/video assets
+studio/              Sanity Studio workspace
+demo-app/            Standalone Next.js demo source kept as reference
+```
+
+## Content Files
+
+- Main profile and portfolio content: `src/data/content.ts`
+- Showcase items: `src/data/showcases.ts`
+- Translations: `src/i18n/translations.ts`
+- Blog registry: `src/blog/posts-registry.ts`
+- SEO shell metadata: `index.html`
+- Sitemap: `public/sitemap.xml`
+- Robots: `public/robots.txt`
+
+## Deployment
+
+The app is configured for Vercel with SPA routing via `vercel.json`.
+
+Build output is generated in `dist/`.
+
+## Notes
+
+- The canonical public domain is `https://anantasak.com/`.
+- Keep personal contact details intentional and public-facing only.
+- `demo-app/` and `studio/` are separate workspaces and are ignored by the top-level ESLint config.

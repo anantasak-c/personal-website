@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import { useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import {
   ArrowUpRight,
   BarChart3,
@@ -125,6 +125,8 @@ export function SyncSocialDemoDashboard() {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [history, setHistory] = useState<PostHistory[]>(INITIAL_HISTORY);
   const [hasLineToken, setHasLineToken] = useState(false);
+  const nextToastId = useRef(1);
+  const nextPostId = useRef(INITIAL_HISTORY.length + 1);
 
   const analyticsTotals = useMemo(
     () => ({ impressions: 128420, reach: 86440, posts: history.length + 14, engagement: 6842 }),
@@ -132,7 +134,8 @@ export function SyncSocialDemoDashboard() {
   );
 
   const addToast = (message: string, type: "success" | "error") => {
-    const id = Date.now();
+    const id = nextToastId.current;
+    nextToastId.current += 1;
     setToasts((prev) => [...prev, { id, message, type }]);
     setTimeout(() => setToasts((prev) => prev.filter((item) => item.id !== id)), 3000);
   };
@@ -191,7 +194,7 @@ export function SyncSocialDemoDashboard() {
     setTimeout(() => {
       setHistory((prev) => [
         {
-          id: String(Date.now()),
+          id: `demo-${nextPostId.current++}`,
           content: caption,
           media_urls: mediaItems.map((item) => item.url),
           platforms: selected.map((item) => item.platform),

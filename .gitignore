@@ -33,3 +33,13 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Local agent & private notes
+.agents/
+.codex/
+.impeccable/
+.github/hooks/
+.github/skills/
+สัม/
+*interview*.md
+

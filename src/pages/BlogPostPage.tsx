@@ -1,33 +1,38 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useSEO } from "@/hooks/useSEO";
-import { ArrowLeft, Clock, Tag, Loader2 } from "lucide-react";
-import { personalInfo } from "@/data/content";
-import { sanityClient, POST_BY_SLUG_QUERY, urlFor } from "@/lib/sanity";
-import { PortableText } from "@portabletext/react";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
+import { EditorialLayout } from "@/components/editorial/EditorialLayout";
+import { ReadingProgress } from "@/components/editorial/ReadingProgress";
+import { fallbackNotes } from "@/data/notes";
+import { POST_BY_SLUG_QUERY, sanityClient, urlFor } from "@/lib/sanity";
 import type { SanityPost } from "@/types/blog";
-import { useLang } from "@/i18n/LanguageContext";
-import 'highlight.js/styles/github.css';
+import { useSEO } from "@/hooks/useSEO";
+import "highlight.js/styles/github.css";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const portableTextComponents: any = {
+const portableTextComponents: Partial<PortableTextComponents> = {
   types: {
     image: ({ value }: { value: { asset: unknown; alt?: string; caption?: string } }) => (
-      <figure className="my-8">
+      <figure className="my-10">
         <img
-          src={urlFor(value.asset).width(800).url()}
-          alt={value.alt || ""}
-          className="w-full rounded-xl object-cover"
+          src={urlFor(value.asset).width(1200).url()}
+          alt={value.alt ?? ""}
+          className="w-full rounded-[1.5rem] border border-black/[0.08] object-cover shadow-sm"
         />
-        {value.caption && (
-          <figcaption className="text-center text-sm text-gray-400 mt-2">{value.caption}</figcaption>
-        )}
+        {value.caption ? (
+          <figcaption className="mt-3 text-center text-sm text-[#86868b]">{value.caption}</figcaption>
+        ) : null}
       </figure>
     ),
   },
   marks: {
-    link: ({ value, children }: { value: { href: string }; children: React.ReactNode }) => (
-      <a href={value.href} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+    link: ({ value, children }) => (
+      <a
+        href={value?.href ?? "#"}
+        target="_blank"
+        rel="noreferrer"
+        className="text-[#0071e3] underline underline-offset-4 hover:text-[#0055b3]"
+      >
         {children}
       </a>
     ),
@@ -35,148 +40,122 @@ const portableTextComponents: any = {
 };
 
 export function BlogPostPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const { t, lang } = useLang();
-  const [post, setPost] = useState<SanityPost | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { slug = "" } = useParams<{ slug: string }>();
+  const fallback = fallbackNotes.find((note) => note.slug === slug);
+  const hasSanityConfig = Boolean(import.meta.env.VITE_SANITY_PROJECT_ID);
+  const [post, setPost] = useState<SanityPost | null>(fallback ?? null);
+  const [loading, setLoading] = useState(hasSanityConfig);
 
   useSEO({
-    title: post?.title || "Blog Post",
-    description: post?.description || "",
-    url: `https://anantasak.dev/blog/${slug}`,
+    title: post?.title ?? "Note",
+    description: post?.description ?? "A note from ANAN.",
+    url: `https://anantasak.com/notes/${slug}`,
   });
 
   useEffect(() => {
-    console.log("BlogPostPage slug:", slug);
-    if (!slug) {
-      console.warn("No slug provided");
-      return;
-    }
+    if (!hasSanityConfig || !slug) return;
+    let active = true;
     sanityClient
       .fetch<SanityPost>(POST_BY_SLUG_QUERY, { slug })
       .then((data) => {
-        console.log("Sanity query result:", data);
-        setPost(data ?? null);
+        if (active && data) setPost(data);
       })
-      .catch((error) => {
-        console.error("Error fetching post:", error);
-        setPost(null);
-      })
-      .finally(() => setLoading(false));
-  }, [slug]);
+      .catch(() => undefined)
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [hasSanityConfig, slug]);
 
-  if (loading) {
+  if (loading && !post)
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
-      </div>
+      <EditorialLayout>
+        <div className="mx-auto max-w-3xl px-5 py-24">
+          <div className="h-4 w-32 animate-pulse rounded bg-black/[0.06]" />
+          <div className="mt-8 h-16 animate-pulse rounded bg-black/[0.06]" />
+        </div>
+      </EditorialLayout>
     );
-  }
 
-  if (!post) {
+  if (!post)
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-4">
-        <p className="text-gray-500">{t("blog.notFound")}</p>
-        <Link to="/blog" className="text-blue-600 hover:underline text-sm">{t("blog.backHome")}</Link>
-      </div>
+      <EditorialLayout>
+        <div className="mx-auto max-w-3xl px-5 py-28 text-center">
+          <h1 className="text-4xl font-semibold text-[#1d1d1f]">Note not found.</h1>
+          <Link to="/notes" className="mt-6 inline-flex items-center gap-2 text-[#0071e3]">
+            <ArrowLeft className="h-4 w-4" /> Back to Notes
+          </Link>
+        </div>
+      </EditorialLayout>
     );
-  }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="border-b border-gray-100">
-        <div className="max-w-3xl mx-auto px-6 py-5 flex items-center justify-between">
-          <Link
-            to="/blog"
-            className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            {t("blog.back")}
-          </Link>
-          <Link to="/" className="text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors">
-            {personalInfo.name}
-          </Link>
-        </div>
-      </div>
-
-      {/* Article */}
-      <article className="max-w-3xl mx-auto px-6 py-16">
-        {post.coverImage && (
-          <div className="mb-8 overflow-hidden rounded-3xl border border-gray-100 bg-gray-100 shadow-sm">
-            <img
-              src={urlFor(post.coverImage).width(1600).height(900).fit("crop").url()}
-              alt={post.title}
-              className="h-full w-full max-h-[520px] object-cover"
-            />
-          </div>
-        )}
-
-        {/* Tags */}
-        {post.tags?.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="flex items-center gap-1 text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full"
-              >
-                <Tag className="w-3 h-3" />
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Title */}
-        <h1 className="text-3xl font-bold text-gray-900 mb-4 leading-snug">{post.title}</h1>
-
-        {/* Meta */}
-        <div className="flex items-center gap-4 text-sm text-gray-400 mb-10 pb-10 border-b border-gray-100">
-          {post.publishedAt && (
+    <EditorialLayout>
+      <ReadingProgress />
+      <article
+        lang={post.language === "TH" ? "th" : "en"}
+        className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-24"
+      >
+        <Link
+          to="/notes"
+          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#86868b] transition hover:text-[#0071e3]"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" /> Back to Notes
+        </Link>
+        {post.coverImage ? (
+          <img
+            src={urlFor(post.coverImage).width(1400).height(800).fit("crop").url()}
+            alt={post.title}
+            className="mt-10 aspect-[16/9] w-full rounded-[2rem] border border-black/[0.08] object-cover shadow-lg"
+          />
+        ) : null}
+        <header className="mt-10 border-b border-black/[0.08] pb-10">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#0071e3]">
+            {post.contentType ?? "Article"} · {post.language ?? "TH"}
+          </p>
+          <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.045em] text-[#1d1d1f] sm:text-5xl">
+            {post.title}
+          </h1>
+          <p className="mt-5 text-lg leading-relaxed text-[#6e6e73] sm:text-xl">{post.description}</p>
+          <div className="mt-6 flex flex-wrap gap-3 text-sm text-[#86868b]">
             <span>
-              {new Date(post.publishedAt).toLocaleDateString(lang === "th" ? "th-TH" : "en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {post.publishedAt
+                ? new Date(post.publishedAt).toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })
+                : "Archive"}
             </span>
-          )}
-          {post.readTime && (
-            <span className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
-              {post.readTime}
-            </span>
-          )}
-        </div>
-
-        {/* Body */}
+            {post.readTime ? <span>· {post.readTime}</span> : null}
+          </div>
+        </header>
         {post.body ? (
-          <div className="prose prose-gray prose-lg max-w-none
-            prose-headings:font-bold prose-headings:text-gray-900
-            prose-p:text-gray-600 prose-p:leading-relaxed
-            prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
-            prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
-            prose-pre:bg-gray-900 prose-pre:text-gray-100
-            prose-blockquote:border-l-blue-400 prose-blockquote:text-gray-500
-            prose-strong:text-gray-900
-            prose-ul:text-gray-600 prose-ol:text-gray-600">
+          <div className="prose prose-lg mt-12 max-w-none prose-headings:tracking-[-0.03em] prose-headings:text-[#1d1d1f] prose-p:leading-relaxed prose-p:text-[#434346] prose-a:text-[#0071e3] prose-pre:border prose-pre:border-black/[0.08] prose-pre:bg-[#1d1d1f] prose-pre:text-white">
             <PortableText value={post.body} components={portableTextComponents} />
           </div>
         ) : (
-          <p className="text-gray-400 text-center py-20">{t("blog.noContent")}</p>
+          <div className="mt-12 rounded-2xl border border-black/[0.08] bg-[#f5f5f7] p-6 text-sm leading-7 text-[#6e6e73]">
+            <p>
+              This archive entry is available from the local fallback while the full Sanity document
+              is unavailable. The original summary remains visible so the article is not lost from
+              Notes.
+            </p>
+          </div>
         )}
-
-        {/* Back link */}
-        <div className="mt-16 pt-10 border-t border-gray-100">
-          <Link
-            to="/blog"
-            className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors"
+        <div className="mt-16 border-t border-black/[0.08] pt-8">
+          <a
+            href="https://www.facebook.com/m.anan.tasuk/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#0071e3] hover:underline"
           >
-            <ArrowLeft className="w-4 h-4" />
-            {t("blog.backAll")}
-          </Link>
+            Follow build updates on Facebook <ArrowUpRight className="h-4 w-4" />
+          </a>
         </div>
       </article>
-    </div>
+    </EditorialLayout>
   );
 }

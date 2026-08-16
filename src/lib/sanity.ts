@@ -23,6 +23,9 @@ export const ALL_POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc) {
   tags,
   publishedAt,
   readTime,
+  contentType,
+  language,
+  relatedWork,
   coverImage
 }`;
 
@@ -34,6 +37,9 @@ export const POST_BY_SLUG_QUERY = `*[_type == "post" && slug.current == $slug][0
   tags,
   publishedAt,
   readTime,
+  contentType,
+  language,
+  relatedWork,
   coverImage,
   body
 }`;
@@ -46,5 +52,8 @@ export const LATEST_POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc)[
   tags,
   publishedAt,
   readTime,
+  contentType,
+  language,
+  relatedWork,
   coverImage
 }`;

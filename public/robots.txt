@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anantasak.dev/sitemap.xml
+Sitemap: https://anantasak.com/sitemap.xml
