@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play, Sparkles, Waves } from "lucide-react";
+import { Lightbulb, Pause, Play, Sparkles, Waves } from "lucide-react";
 import { GradientWaves } from "@/components/reactbits/GradientWaves";
+import { Spotlight } from "@/components/ui/spotlight-new";
 
-export type BackgroundMode = "gradient-waves" | "sci-fi-wave" | "quantum-orb" | "cinematic-video" | "pure-minimal";
+export type BackgroundMode = "gradient-waves" | "spotlight" | "sci-fi-wave" | "quantum-orb" | "cinematic-video" | "pure-minimal";
 
 interface BackgroundVideoProps {
   src?: string;
@@ -76,7 +77,8 @@ export function BackgroundVideo({
 
   const cycleBgMode = () => {
     setBgMode((prev) => {
-      if (prev === "gradient-waves") return "sci-fi-wave";
+      if (prev === "gradient-waves") return "spotlight";
+      if (prev === "spotlight") return "sci-fi-wave";
       if (prev === "sci-fi-wave") return "quantum-orb";
       if (prev === "quantum-orb") return "cinematic-video";
       if (prev === "cinematic-video") return "pure-minimal";
@@ -86,7 +88,7 @@ export function BackgroundVideo({
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none bg-[#fbfbfd]">
-      {/* ── 1. Official React Bits WebGL2 Gradient Waves (Sunset Amber & Electric Cyan on Apple White) ── */}
+      {/* ── 1. Official React Bits WebGL2 Gradient Waves (Clean Apple White & Blue) ── */}
       {bgMode === "gradient-waves" && (
         <div className="absolute inset-0 transition-opacity duration-1000">
           <GradientWaves
@@ -134,7 +136,31 @@ export function BackgroundVideo({
         </div>
       )}
 
-      {/* ── 2. Minimal Sci-Fi Neural Wave Backdrop ── */}
+      {/* ── 2. Aceternity UI Spotlight New Background Mode ── */}
+      {bgMode === "spotlight" && (
+        <div className="absolute inset-0 transition-opacity duration-1000">
+          <Spotlight
+            gradientFirst="radial-gradient(68.54% 68.72% at 55.02% 31.46%, rgba(0, 113, 227, 0.16) 0, rgba(0, 113, 227, 0.04) 50%, rgba(0, 113, 227, 0) 80%)"
+            gradientSecond="radial-gradient(50% 50% at 50% 50%, rgba(41, 151, 255, 0.14) 0, rgba(41, 151, 255, 0.03) 80%, transparent 100%)"
+            gradientThird="radial-gradient(50% 50% at 50% 50%, rgba(0, 199, 190, 0.10) 0, rgba(0, 199, 190, 0.02) 80%, transparent 100%)"
+            translateY={-300}
+            width={600}
+            height={1400}
+            smallWidth={260}
+            duration={7}
+            xOffset={120}
+          />
+          <div
+            className="pointer-events-none absolute inset-0 z-[1]"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 20%, rgba(251,251,253,0.1) 0%, rgba(251,251,253,0.8) 70%, #fbfbfd 100%)",
+            }}
+          />
+        </div>
+      )}
+
+      {/* ── 3. Minimal Sci-Fi Neural Wave Backdrop ── */}
       {bgMode === "sci-fi-wave" && (
         <div className="absolute inset-0 transition-opacity duration-1000">
           <img
@@ -149,7 +175,7 @@ export function BackgroundVideo({
         </div>
       )}
 
-      {/* ── 3. Quantum Orb Sci-Fi Backdrop ── */}
+      {/* ── 4. Quantum Orb Sci-Fi Backdrop ── */}
       {bgMode === "quantum-orb" && (
         <div className="absolute inset-0 transition-opacity duration-1000">
           <img
@@ -164,7 +190,7 @@ export function BackgroundVideo({
         </div>
       )}
 
-      {/* ── 4. Cinematic Video Backdrop (Keynote Video) ── */}
+      {/* ── 5. Cinematic Video Backdrop (Keynote Video) ── */}
       {bgMode === "cinematic-video" && (
         <video
           ref={videoRef}
@@ -187,8 +213,8 @@ export function BackgroundVideo({
         />
       )}
 
-      {/* ── 5. Subtle Ambient Caustic Light Refractions (for other modes) ── */}
-      {bgMode !== "gradient-waves" && (
+      {/* ── 6. Subtle Ambient Caustic Light Refractions (for other modes) ── */}
+      {bgMode !== "gradient-waves" && bgMode !== "spotlight" && (
         <div
           className="absolute inset-0 opacity-40 mix-blend-soft-light"
           style={{
@@ -201,8 +227,8 @@ export function BackgroundVideo({
         />
       )}
 
-      {/* ── 6. Apple Light Vignette Mask (for other modes) ── */}
-      {bgMode !== "gradient-waves" && (
+      {/* ── 7. Apple Light Vignette Mask (for other modes) ── */}
+      {bgMode !== "gradient-waves" && bgMode !== "spotlight" && (
         <div
           className="absolute inset-0"
           style={{
@@ -214,7 +240,7 @@ export function BackgroundVideo({
         />
       )}
 
-      {/* ── 7. Ambient Minimal Switcher Controls ── */}
+      {/* ── 8. Ambient Minimal Switcher Controls ── */}
       {showControls && (
         <div className="pointer-events-auto absolute bottom-5 right-5 z-20 flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/85 p-1 shadow-sm backdrop-blur-2xl transition hover:border-black/20 hover:bg-white sm:bottom-6 sm:right-6">
           <button
@@ -223,13 +249,12 @@ export function BackgroundVideo({
             className="flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-[#1d1d1f] transition hover:bg-black/[0.04]"
             title="Switch Background Theme"
           >
-            {bgMode === "gradient-waves" ? (
-              <Waves className="h-3 w-3 text-[#0071e3]" />
-            ) : (
-              <Sparkles className="h-3 w-3 text-[#0071e3]" />
-            )}
+            {bgMode === "gradient-waves" && <Waves className="h-3 w-3 text-[#0071e3]" />}
+            {bgMode === "spotlight" && <Lightbulb className="h-3 w-3 text-[#0071e3]" />}
+            {bgMode !== "gradient-waves" && bgMode !== "spotlight" && <Sparkles className="h-3 w-3 text-[#0071e3]" />}
             <span>
               {bgMode === "gradient-waves" && "React Bits Gradient Waves"}
+              {bgMode === "spotlight" && "Spotlight (Aceternity UI)"}
               {bgMode === "sci-fi-wave" && "Sci-Fi Wave"}
               {bgMode === "quantum-orb" && "Quantum Orb"}
               {bgMode === "cinematic-video" && "Keynote Video"}
