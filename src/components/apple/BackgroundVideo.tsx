@@ -242,19 +242,29 @@ export function BackgroundVideo({
 
       {/* ── 8. Ambient Minimal Switcher Controls ── */}
       {showControls && (
-        <div className="pointer-events-auto absolute bottom-5 right-5 z-20 flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/85 p-1 shadow-sm backdrop-blur-2xl transition hover:border-black/20 hover:bg-white sm:bottom-6 sm:right-6">
+        <div className="pointer-events-auto absolute bottom-3 right-3 z-20 flex items-center gap-1 rounded-full border border-black/[0.08] bg-white/85 p-1 shadow-sm backdrop-blur-2xl transition hover:border-black/20 hover:bg-white sm:bottom-6 sm:right-6 sm:gap-2">
           <button
             type="button"
             onClick={cycleBgMode}
-            className="flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-[#1d1d1f] transition hover:bg-black/[0.04]"
+            className="flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-wider text-[#1d1d1f] transition hover:bg-black/[0.04] sm:px-3 sm:py-1.5 sm:text-[10px]"
             title="Switch Background Theme"
           >
             {bgMode === "gradient-waves" && <Waves className="h-3 w-3 text-[#0071e3]" />}
             {bgMode === "spotlight" && <Lightbulb className="h-3 w-3 text-[#0071e3]" />}
             {bgMode !== "gradient-waves" && bgMode !== "spotlight" && <Sparkles className="h-3 w-3 text-[#0071e3]" />}
             <span>
-              {bgMode === "gradient-waves" && "React Bits Gradient Waves"}
-              {bgMode === "spotlight" && "Spotlight (Aceternity UI)"}
+              {bgMode === "gradient-waves" && (
+                <>
+                  <span className="hidden sm:inline">React Bits Gradient Waves</span>
+                  <span className="inline sm:hidden">Gradient Waves</span>
+                </>
+              )}
+              {bgMode === "spotlight" && (
+                <>
+                  <span className="hidden sm:inline">Spotlight (Aceternity UI)</span>
+                  <span className="inline sm:hidden">Spotlight</span>
+                </>
+              )}
               {bgMode === "sci-fi-wave" && "Sci-Fi Wave"}
               {bgMode === "quantum-orb" && "Quantum Orb"}
               {bgMode === "cinematic-video" && "Keynote Video"}
@@ -266,11 +276,11 @@ export function BackgroundVideo({
             <button
               type="button"
               onClick={togglePlayback}
-              className="flex h-7 w-7 items-center justify-center rounded-full text-[#86868b] transition hover:bg-black/[0.04] hover:text-[#1d1d1f]"
+              className="flex h-6 w-6 items-center justify-center rounded-full text-[#86868b] transition hover:bg-black/[0.04] hover:text-[#1d1d1f] sm:h-7 sm:w-7"
               aria-label={isPlaying ? "Pause ambient motion" : "Play ambient motion"}
               title={isPlaying ? "Pause Motion" : "Play Motion"}
             >
-              {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3 text-[#0071e3]" />}
+              {isPlaying ? <Pause className="h-2.5 w-2.5 sm:h-3 sm:w-3" /> : <Play className="h-2.5 w-2.5 text-[#0071e3] sm:h-3 sm:w-3" />}
             </button>
           )}
         </div>

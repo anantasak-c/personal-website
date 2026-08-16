@@ -41,37 +41,37 @@ export function SkillsMarquee() {
   const track2 = [...row2Skills, ...row2Skills, ...row2Skills];
 
   return (
-    <section className="relative mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 sm:py-24">
+    <section className="relative mx-auto max-w-7xl overflow-hidden px-3 py-12 sm:px-6 sm:py-24">
       {/* Header */}
       <div className="mx-auto max-w-3xl text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/80 px-4 py-1.5 shadow-sm backdrop-blur-xl">
+        <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/80 px-3.5 py-1.5 shadow-sm backdrop-blur-xl">
           <Sparkles className="h-3.5 w-3.5 text-[#0071e3]" />
-          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0071e3]">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0071e3] sm:text-[11px] sm:tracking-[0.2em]">
             {t("skills.label")}
           </span>
         </div>
 
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-[#1d1d1f] sm:text-5xl">
+        <h2 className="mt-3 text-2xl font-semibold tracking-[-0.035em] text-[#1d1d1f] sm:mt-4 sm:text-4xl sm:tracking-[-0.04em] md:text-5xl">
           {t("skills.title")}
         </h2>
 
-        <p className="mt-4 text-base leading-relaxed text-[#6e6e73] sm:text-lg">
+        <p className="mt-3 text-sm leading-relaxed text-[#6e6e73] sm:mt-4 sm:text-base md:text-lg">
           {t("skills.subtitle")}
         </p>
       </div>
 
       {/* ── Marquee Stage ── */}
-      <div className="relative mt-12 space-y-4">
+      <div className="relative mt-8 space-y-3 sm:mt-12 sm:space-y-4">
         {/* Track 1: Flowing Left */}
         <div className="marquee-container py-1">
-          <div className="animate-marquee-left gap-3.5">
+          <div className="animate-marquee-left gap-2.5 sm:gap-3.5">
             {track1.map((item, index) => (
               <div
                 key={`${item.label}-${index}`}
-                className="group inline-flex items-center gap-2.5 rounded-full border border-black/[0.08] bg-white/85 px-4 py-2.5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#0071e3]/30 hover:bg-white hover:shadow-md cursor-default select-none"
+                className="group inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/85 px-3 py-2 shadow-[0_2px_10px_rgba(0,0,0,0.03)] backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#0071e3]/30 hover:bg-white hover:shadow-md cursor-default select-none sm:gap-2.5 sm:px-4 sm:py-2.5"
               >
-                <span className="text-base sm:text-lg">{item.icon}</span>
-                <span className="text-xs font-semibold text-[#1d1d1f] transition group-hover:text-[#0071e3] sm:text-sm whitespace-nowrap">
+                <span className="text-sm sm:text-lg">{item.icon}</span>
+                <span className="text-[11px] font-semibold text-[#1d1d1f] transition group-hover:text-[#0071e3] sm:text-sm whitespace-nowrap">
                   {lang === "th" ? item.labelTh ?? item.label : item.label}
                 </span>
               </div>
@@ -81,14 +81,14 @@ export function SkillsMarquee() {
 
         {/* Track 2: Flowing Right */}
         <div className="marquee-container py-1">
-          <div className="animate-marquee-right gap-3.5">
+          <div className="animate-marquee-right gap-2.5 sm:gap-3.5">
             {track2.map((item, index) => (
               <div
                 key={`${item.label}-${index}`}
-                className="group inline-flex items-center gap-2.5 rounded-full border border-black/[0.08] bg-white/85 px-4 py-2.5 shadow-[0_2px_10px_rgba(0,0,0,0.03)] backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#0071e3]/30 hover:bg-white hover:shadow-md cursor-default select-none"
+                className="group inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/85 px-3 py-2 shadow-[0_2px_10px_rgba(0,0,0,0.03)] backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-[#0071e3]/30 hover:bg-white hover:shadow-md cursor-default select-none sm:gap-2.5 sm:px-4 sm:py-2.5"
               >
-                <span className="text-base sm:text-lg">{item.icon}</span>
-                <span className="text-xs font-semibold text-[#1d1d1f] transition group-hover:text-[#0071e3] sm:text-sm whitespace-nowrap">
+                <span className="text-sm sm:text-lg">{item.icon}</span>
+                <span className="text-[11px] font-semibold text-[#1d1d1f] transition group-hover:text-[#0071e3] sm:text-sm whitespace-nowrap">
                   {lang === "th" ? item.labelTh ?? item.label : item.label}
                 </span>
               </div>

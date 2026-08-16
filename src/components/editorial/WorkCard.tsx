@@ -28,14 +28,14 @@ export function WorkCard({ item, index, featured = false }: WorkCardProps) {
     return (
       <Link
         to={`/work/${item.slug}`}
-        className="group block overflow-hidden rounded-[2.5rem] border border-black/[0.08] bg-white/85 text-[#1d1d1f] shadow-[0_16px_40px_rgba(0,0,0,0.05)] backdrop-blur-2xl transition-all duration-300 hover:border-black/15 hover:shadow-[0_24px_50px_rgba(0,0,0,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3] focus-visible:ring-offset-4"
+        className="group block overflow-hidden rounded-[1.75rem] border border-black/[0.08] bg-white/85 text-[#1d1d1f] shadow-[0_16px_40px_rgba(0,0,0,0.05)] backdrop-blur-2xl transition-all duration-300 hover:border-black/15 hover:shadow-[0_24px_50px_rgba(0,0,0,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3] focus-visible:ring-offset-4 sm:rounded-[2.5rem]"
       >
         <WorkVisual item={item} eager interactive />
-        <div className="grid gap-8 p-7 sm:p-12 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+        <div className="grid gap-6 p-5 sm:gap-8 sm:p-12 lg:grid-cols-[1fr_0.8fr] lg:items-end">
           <div>
             <div className="flex items-center gap-3">
               <span
-                className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider ${getMaturityStyle(
+                className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider sm:text-[11px] ${getMaturityStyle(
                   localized.maturity
                 )}`}
               >
@@ -46,13 +46,13 @@ export function WorkCard({ item, index, featured = false }: WorkCardProps) {
                 01 · {t("work.featuredTitle")}
               </span>
             </div>
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] text-[#1d1d1f] sm:text-6xl">
+            <h2 className="mt-3 text-2xl font-semibold tracking-[-0.035em] text-[#1d1d1f] sm:mt-4 sm:text-5xl sm:tracking-[-0.045em] md:text-6xl">
               {localized.title}
             </h2>
           </div>
           <div>
-            <p className="text-lg leading-8 text-[#6e6e73]">{localized.summary}</p>
-            <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#0071e3]">
+            <p className="text-base leading-relaxed text-[#6e6e73] sm:text-lg sm:leading-8">{localized.summary}</p>
+            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#0071e3] sm:mt-6">
               {t("work.readStory")}{" "}
               <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </span>
@@ -67,10 +67,10 @@ export function WorkCard({ item, index, featured = false }: WorkCardProps) {
   return (
     <Link
       to={`/work/${item.slug}`}
-      className="group grid gap-7 border-t border-black/[0.08] py-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3] focus-visible:ring-offset-4 sm:py-14 lg:grid-cols-12 lg:items-center lg:gap-12"
+      className="group grid gap-6 border-t border-black/[0.08] py-8 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0071e3] focus-visible:ring-offset-4 sm:gap-7 sm:py-14 lg:grid-cols-12 lg:items-center lg:gap-12"
     >
       <div
-        className={`overflow-hidden rounded-[2rem] border border-black/[0.06] shadow-sm lg:col-span-7 ${
+        className={`overflow-hidden rounded-[1.5rem] border border-black/[0.06] shadow-sm sm:rounded-[2rem] lg:col-span-7 ${
           imageFirst ? "lg:order-1" : "lg:order-2"
         }`}
       >
@@ -90,14 +90,14 @@ export function WorkCard({ item, index, featured = false }: WorkCardProps) {
             {String(index + 1).padStart(2, "0")} · {item.year}
           </span>
         </div>
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-[#1d1d1f] transition group-hover:text-[#0071e3] sm:text-4xl">
+        <h2 className="mt-3 text-2xl font-semibold tracking-[-0.035em] text-[#1d1d1f] transition group-hover:text-[#0071e3] sm:mt-4 sm:text-4xl sm:tracking-[-0.04em]">
           {localized.title}
         </h2>
-        <p className="mt-4 text-lg leading-8 text-[#6e6e73]">{localized.summary}</p>
-        <p className="mt-5 text-sm leading-6 text-[#86868b]">
+        <p className="mt-3 text-base leading-relaxed text-[#6e6e73] sm:mt-4 sm:text-lg sm:leading-8">{localized.summary}</p>
+        <p className="mt-4 text-xs leading-5 text-[#86868b] sm:mt-5 sm:text-sm sm:leading-6">
           <span className="font-medium text-[#1d1d1f]">{t("workDetail.role")}</span> {localized.role}
         </p>
-        <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#0071e3]">
+        <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#0071e3] sm:mt-7">
           {t("work.readStory")}{" "}
           <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
         </span>

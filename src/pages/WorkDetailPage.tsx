@@ -73,7 +73,7 @@ export function WorkDetailPage() {
       <ReadingProgress />
       <article>
         {/* Header Stage */}
-        <section className="mx-auto max-w-7xl px-5 pb-10 pt-12 sm:px-8 sm:pb-16 sm:pt-20">
+        <section className="mx-auto max-w-7xl px-4 pb-8 pt-8 sm:px-8 sm:pb-16 sm:pt-20">
           <Reveal>
             <Link
               to="/work"
@@ -82,18 +82,18 @@ export function WorkDetailPage() {
               <ArrowLeft className="h-3.5 w-3.5" /> {t("workDetail.back")}
             </Link>
 
-            <div className="mt-8 grid gap-9 lg:grid-cols-[1.1fr_0.8fr] lg:items-end">
+            <div className="mt-6 grid gap-6 lg:grid-cols-[1.1fr_0.8fr] lg:items-end sm:mt-8 sm:gap-9">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#0071e3]">
+                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#0071e3] sm:text-xs sm:tracking-[0.2em]">
                   Project Story · {item.maturity} · {item.year}
                 </p>
-                <h1 className="mt-4 text-balance text-4xl font-bold tracking-[-0.055em] text-[#1d1d1f] sm:text-6xl lg:text-[5rem] lg:leading-[0.96]">
+                <h1 className="mt-3 text-balance text-3xl font-bold tracking-[-0.04em] text-[#1d1d1f] sm:mt-4 sm:text-6xl lg:text-[5rem] lg:leading-[0.96]">
                   {item.title}
                 </h1>
               </div>
               <div>
-                <p className="text-lg leading-relaxed text-[#6e6e73] sm:text-xl">{item.outcome}</p>
-                <p className="mt-5 text-sm text-[#86868b]">
+                <p className="text-base leading-relaxed text-[#6e6e73] sm:text-xl">{item.outcome}</p>
+                <p className="mt-3 text-xs text-[#86868b] sm:mt-5 sm:text-sm">
                   <span className="font-medium text-[#1d1d1f]">{t("workDetail.role")}</span> {item.role}
                 </p>
               </div>
@@ -101,9 +101,9 @@ export function WorkDetailPage() {
           </Reveal>
 
           {/* ── Segmented Mode Switcher (Live Demo vs System Architecture vs Product Showcase) ── */}
-          <Reveal className="mt-10" delay={0.06}>
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-black/[0.08] pb-4">
-              <div className="inline-flex rounded-full border border-black/[0.08] bg-white/80 p-1.5 shadow-sm backdrop-blur-xl">
+          <Reveal className="mt-8 sm:mt-10" delay={0.06}>
+            <div className="flex flex-col gap-3 border-b border-black/[0.08] pb-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <div className="flex w-full items-center gap-1 overflow-x-auto rounded-2xl border border-black/[0.08] bg-white/85 p-1 shadow-sm backdrop-blur-xl sm:w-auto sm:rounded-full sm:p-1.5">
                 {([
                   { key: "demo" as const, icon: Play, label: lang === "th" ? "🚀 ทดลองใช้งานจริง" : "🚀 Live Product Demo" },
                   { key: "flow" as const, icon: Workflow, label: lang === "th" ? "📐 สถาปัตยกรรมระบบ" : "📐 System Architecture" },
@@ -113,19 +113,19 @@ export function WorkDetailPage() {
                     key={tab.key}
                     type="button"
                     onClick={() => setActiveStageView(tab.key)}
-                    className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-all duration-300 ${
+                    className={`flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-[11px] font-semibold transition-all duration-300 sm:rounded-full sm:px-4 sm:py-2 sm:text-xs ${
                       activeStageView === tab.key
                         ? "bg-[#0071e3] text-white shadow-md scale-[1.02]"
                         : "text-[#6e6e73] hover:text-[#1d1d1f] hover:bg-black/[0.03]"
                     }`}
                   >
-                    <tab.icon className="h-3.5 w-3.5 fill-current" />
+                    <tab.icon className="h-3 w-3 fill-current sm:h-3.5 sm:w-3.5" />
                     <span>{tab.label}</span>
                   </button>
                 ))}
               </div>
 
-              <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-[#0071e3]">
+              <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[#0071e3] sm:text-[11px]">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#0071e3]" />
                 {lang === "th" ? "ระบบจำลองที่ใช้งานได้จริง" : "Real Working Simulator"}
               </span>

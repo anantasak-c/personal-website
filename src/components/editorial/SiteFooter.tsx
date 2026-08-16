@@ -7,14 +7,14 @@ export function SiteFooter() {
   const { t } = useLang();
 
   return (
-    <footer className="relative z-10 border-t border-black/[0.08] bg-[#f5f5f7]/80 backdrop-blur-2xl">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1fr_auto] md:items-end">
+    <footer className="relative z-10 border-t border-black/[0.08] bg-[#f5f5f7]/80 pb-20 pt-10 backdrop-blur-2xl sm:pb-14 sm:pt-14">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:gap-10 sm:px-8 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <div className="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.2em] text-[#0071e3]">
+          <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[#0071e3] sm:text-xs sm:tracking-[0.2em]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#0071e3]" />
             <span>{t("footer.title")}</span>
           </div>
-          <p className="mt-3 max-w-xl text-base leading-7 text-[#6e6e73] sm:text-lg">
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#6e6e73] sm:mt-3 sm:text-lg sm:leading-7">
             {t("footer.desc")}
           </p>
         </div>

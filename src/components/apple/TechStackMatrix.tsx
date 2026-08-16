@@ -127,21 +127,21 @@ export function TechStackMatrix() {
   const { lang } = useLang();
 
   return (
-    <section className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+    <section className="relative mx-auto max-w-7xl px-4 py-12 sm:px-8 sm:py-28">
       {/* Section Header */}
       <div className="mx-auto max-w-3xl text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/80 px-4 py-1.5 shadow-sm backdrop-blur-xl">
+        <div className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/80 px-3.5 py-1.5 shadow-sm backdrop-blur-xl">
           <Boxes className="h-3.5 w-3.5 text-[#0071e3]" />
-          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0071e3]">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0071e3] sm:text-[11px] sm:tracking-[0.2em]">
             {lang === "th" ? "ทักษะเชิงเทคนิค & เครื่องมือ" : "Tech Stack & Tools Matrix"}
           </span>
         </div>
 
-        <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-[#1d1d1f] sm:text-5xl">
+        <h2 className="mt-3 text-2xl font-semibold tracking-[-0.035em] text-[#1d1d1f] sm:mt-4 sm:text-4xl sm:tracking-[-0.04em] md:text-5xl">
           {lang === "th" ? "เทคโนโลยีและเครื่องมือที่ใช้ในการพัฒนาระบบ" : "Tools Chosen for Practical Impact"}
         </h2>
 
-        <p className="mt-4 text-base leading-relaxed text-[#6e6e73] sm:text-lg">
+        <p className="mt-3 text-sm leading-relaxed text-[#6e6e73] sm:mt-4 sm:text-base md:text-lg">
           {lang === "th"
             ? "โครงสร้างทักษะที่ครอบคลุมตั้งแต่การวิเคราะห์โจทย์, การวางระบบ AI Automation ไปจนถึงการขึ้นระบบ Production"
             : "A battle-tested combination of data analytics, autonomous AI pipelines, and modern infrastructure."}
@@ -149,11 +149,11 @@ export function TechStackMatrix() {
       </div>
 
       {/* 3 Pillar Grid */}
-      <div className="mt-14 grid gap-8 lg:grid-cols-3">
+      <div className="mt-8 grid gap-5 sm:mt-14 sm:gap-8 lg:grid-cols-3">
         {techCategories.map((cat) => (
           <div
             key={cat.id}
-            className="flex flex-col justify-between rounded-[2rem] border border-black/[0.08] bg-white/85 p-6 shadow-[0_12px_36px_rgba(0,0,0,0.04)] backdrop-blur-2xl transition duration-300 hover:border-black/15 hover:shadow-md sm:p-8"
+            className="flex flex-col justify-between rounded-[1.75rem] border border-black/[0.08] bg-white/85 p-5 shadow-[0_12px_36px_rgba(0,0,0,0.04)] backdrop-blur-2xl transition duration-300 hover:border-black/15 hover:shadow-md sm:rounded-[2rem] sm:p-8"
           >
             <div>
               {/* Category Header */}
